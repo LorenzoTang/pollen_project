@@ -1,0 +1,53 @@
+# =========================
+# Dataset
+# =========================
+data/raw/
+data/processed/
+mini_dataset/
+
+# =========================
+# Model weights
+# =========================
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# =========================
+# Training outputs
+# =========================
+results/
+runs/
+logs/
+wandb/
+
+# =========================
+# Python cache
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual environment
+# =========================
+.venv/
+venv/
+env/
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# OS generated files
+# =========================
+.DS_Store
+Thumbs.db
