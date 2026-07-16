@@ -52,5 +52,20 @@ Stores experimental outputs.
 Contains all Python dependencies required to run this project.
 
 
+## Current Progress
+
+### Completed
+
+- [x] Project structure initialization
+- [x] RF-DETR environment setup
+- [x] RF-DETR inference pipeline test
+
+### Next
+
+- [ ] Prepare pollen detection dataset
+- [ ] Fine-tune RF-DETR
+- [ ] Build classification model
+- [ ] Add explainability module
+
 ### README.md
 Provides an overview of the project, installation instructions, usage guidelines, and documentation.
