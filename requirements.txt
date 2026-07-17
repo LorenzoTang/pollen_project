@@ -1,6 +1,8 @@
 # Deep Learning
 torch
 torchvision
+
+#RE-DETR
 rfdetr
 
 # Data Processing
@@ -16,6 +18,9 @@ pycocotools
 matplotlib
 opencv-python
 
-# Experiment
+#Machine Learning Utilities
 scikit-learn
+
+# Experiment and Analysis
+ipykernel
 jupyter
