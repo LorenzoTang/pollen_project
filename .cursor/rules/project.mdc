@@ -1,0 +1,50 @@
+---
+description: Pollen detection research project rules
+alwaysApply: true
+---
+
+# Project Context
+
+This is a computer vision research project for pollen detection.
+
+Goal:
+- Recognize pollen categories
+- Detect pollen objects in microscope images
+- Train object detection models
+
+Current framework:
+- RF-DETR
+- PyTorch
+
+Dataset:
+- Microscope images
+- CSV annotations
+- COCO detection format
+
+
+# Coding Rules
+
+1. Do not modify files unless explicitly requested.
+
+2. Before changing code:
+- Explain the reason.
+- Identify affected files.
+
+3. Make minimal changes.
+
+4. Do not rewrite entire files.
+
+5. Keep the existing project structure.
+
+
+# Research Rules
+
+Always consider:
+- reproducibility
+- experiment tracking
+- modular design
+
+Never:
+- modify raw data
+- delete checkpoints
+- overwrite experiment results

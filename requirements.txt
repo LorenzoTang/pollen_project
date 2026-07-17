@@ -1,0 +1,26 @@
+# Deep Learning
+torch
+torchvision
+
+#RE-DETR
+rfdetr
+
+# Data Processing
+pandas
+numpy
+pillow
+tqdm
+
+# Object Detection Dataset
+pycocotools
+
+# Visualization
+matplotlib
+opencv-python
+
+#Machine Learning Utilities
+scikit-learn
+
+# Experiment and Analysis
+ipykernel
+jupyter
