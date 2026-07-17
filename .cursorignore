@@ -1,0 +1,39 @@
+# Dataset files
+data/raw/*
+data/processed/*
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+
+
+# Model weights
+checkpoints/*
+*.pth
+*.pt
+*.ckpt
+
+
+# Training outputs
+results/*
+runs/*
+outputs/*
+
+
+# Python cache
+__pycache__/
+*.pyc
+
+
+# Virtual environments
+.venv/
+venv/
+
+
+# Git files
+.git/
+
+
+# Large notebooks outputs
+.ipynb_checkpoints/
