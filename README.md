@@ -1,71 +1,312 @@
-# pollen_project
-基于自监督特征学习与可解释人工智能的显微花粉识别研究---Deep Learning-Based Microscopic Pollen Recognition with Self-supervised Feature Learning and Explainable AI，
+# Pollen Project
 
-GitHub仓库中的项目结构：
---README:也就是本文件，用于文本介绍项目概况
---checkpoint:用于保存训练好的模型
---configs:用于保存训练参数
---data:用于保存训练用的数据
---notebooks:用于数据探索；可视化；实验记录；日志————存放Jupyter Notebooks文件
---results：用于保存实验结果
---src:项目核心代码目录;包括数据加载，模型定义，训练；测试；推理
---requirements:记录项目运行所需要的Python库
+## Deep Learning-Based Microscopic Pollen Recognition with Self-supervised Feature Learning and Explainable AI
 
-### data/
-Stores all datasets used in this project.
+This project aims to develop an intelligent microscopic pollen recognition framework using deep learning techniques, focusing on automated pollen detection, feature representation learning, and explainable artificial intelligence (XAI).
 
-- `raw/`: Contains original microscopic pollen images without preprocessing.
-- `processed/`: Contains processed datasets after preprocessing, including image resizing, normalization, augmentation, and dataset splitting.
+The current development stage focuses on constructing a reliable pollen detection pipeline based on RF-DETR, including dataset processing, annotation conversion, and model training preparation. Future work will explore self-supervised feature learning and explainable AI methods for improving model robustness and interpretability.
 
+---
 
-### notebooks/
-Contains Jupyter Notebook files for exploratory data analysis, visualization, and experimental studies.
+# Overview
 
+Microscopic pollen identification is an important task in environmental monitoring, allergy analysis, and biological research. Traditional pollen recognition methods mainly rely on expert observation, which can be time-consuming and require extensive domain knowledge.
 
-### src/
-Contains the core source code of the project.
+This project investigates an automated pollen recognition system based on deep learning, aiming to achieve:
 
-- `dataset/`: Responsible for dataset loading, preprocessing, and PyTorch Dataset implementation.
-- `models/`: Contains deep learning model architectures used for pollen classification.
-- `utils/`: Contains auxiliary functions, such as visualization and evaluation tools.
-- `train.py`: Main script for model training.
-- `test.py`: Script for model evaluation.
-- `inference.py`: Script for predicting pollen types from new images.
+- Accurate pollen localization in microscopic images
+- Robust feature representation learning
+- Interpretable model decision analysis using explainable AI techniques
 
+The overall framework:
 
-### configs/
-Stores configuration files for experiments, including model settings, training parameters, and dataset paths.
+```
+Microscopic Images
+        |
+        v
+Data Processing & Annotation Conversion
+        |
+        v
+Object Detection Model (RF-DETR)
+        |
+        v
+Pollen Detection Results
+        |
+        v
+Feature Learning & Explainability Analysis
+```
 
+---
 
-### checkpoints/
-Stores trained model weights and checkpoints generated during training.
+# Project Structure
 
+```
+pollen_project/
 
-### results/
-Stores experimental outputs.
+├── README.md
+│
+├── checkpoints/
+│   └── Saved model weights and training checkpoints
+│
+├── configs/
+│   └── Training and experiment configuration files
+│
+├── data/
+│   ├── raw/
+│   │   └── Original microscopic pollen images and annotations
+│   │
+│   └── processed/
+│       └── Processed datasets in COCO detection format
+│
+├── notebooks/
+│   └── Data exploration, visualization, and experiment records
+│
+├── results/
+│   ├── figures/
+│   │   └── Visualization results
+│   │
+│   └── logs/
+│       └── Training logs and experiment records
+│
+├── src/
+│   ├── convert_coco.py
+│   ├── check_data.py
+│   ├── visualize.py
+│   └── train_rfdetr.py
+│
+└── requirements.txt
+```
 
-- `figures/`: Stores visualization results, such as loss curves, accuracy curves, and confusion matrices.
-- `logs/`: Stores training logs and experiment records.
+---
 
+# Dataset Preparation
 
-### requirements.txt
-Contains all Python dependencies required to run this project.
+The original dataset contains:
 
+- Microscopic pollen images
+- CSV-based bounding box annotations
 
-## Current Progress
+Each image may contain multiple pollen instances, where each annotation row represents one object bounding box.
 
-### Completed
+Example:
+
+```
+Image A
+
+Annotation 1
+Annotation 2
+Annotation 3
+...
+```
+
+Therefore, the preprocessing pipeline groups annotations by image and converts them into a standard COCO object detection format.
+
+---
+
+# Data Processing Pipeline
+
+```
+Raw Dataset
+
+(Image + CSV Annotations)
+
+          |
+          v
+
+CSV Annotation Parsing
+
+          |
+          v
+
+Bounding Box Aggregation
+
+          |
+          v
+
+COCO Format Generation
+
+          |
+          v
+
+RF-DETR Training Dataset
+```
+
+The generated dataset has been verified through:
+
+- Image and annotation consistency checking
+- Bounding box visualization
+- Category distribution analysis
+
+---
+
+# Current Dataset Statistics
+
+The current baseline experiment uses five pollen categories.
+
+| Category | Images | Bounding Boxes |
+|----------|-------:|---------------:|
+| Thymbra | 12 | 157 |
+| Erica | 8 | 186 |
+| Castanea | 8 | 269 |
+| Eucalyptus | 12 | 175 |
+| Myrtus | 11 | 990 |
+
+Total:
+
+- Images: 51
+- Annotated pollen instances: 1777
+
+The dataset has been converted into COCO detection format:
+
+```
+processed/
+
+├── train/
+│   └── images/
+│
+├── val/
+│   └── images/
+│
+└── annotations/
+    ├── train.json
+    └── val.json
+```
+
+---
+
+# Model
+
+## RF-DETR
+
+The current object detection model is based on RF-DETR, a transformer-based detection framework.
+
+The goal is to detect and classify pollen instances from microscopic images.
+
+Input:
+
+```
+Microscopic pollen image
+```
+
+Output:
+
+```
+Detected pollen objects
+
++
+Bounding boxes
+
++
+Pollen categories
+```
+
+---
+
+# Installation
+
+Install required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Usage
+
+## 1. Dataset Conversion
+
+Convert raw CSV annotations into COCO format:
+
+```bash
+python src/convert_coco.py
+```
+
+---
+
+## 2. Dataset Verification
+
+Check image and annotation consistency:
+
+```bash
+python src/check_data.py
+```
+
+---
+
+## 3. Bounding Box Visualization
+
+Visualize generated annotations:
+
+```bash
+python src/visualize.py
+```
+
+---
+
+## 4. Model Training
+
+Train RF-DETR:
+
+```bash
+python src/train_rfdetr.py
+```
+
+---
+
+# Current Progress
+
+## Completed
 
 - [x] Project structure initialization
 - [x] RF-DETR environment setup
-- [x] RF-DETR inference pipeline test
+- [x] Raw pollen dataset analysis
+- [x] CSV annotation parsing
+- [x] Multi-object annotation processing
+- [x] COCO-format dataset conversion
+- [x] Dataset consistency verification
+- [x] Bounding box visualization pipeline
 
-### Next
 
-- [ ] Prepare pollen detection dataset
-- [ ] Fine-tune RF-DETR
-- [ ] Build classification model
-- [ ] Add explainability module
+## In Progress
 
-### README.md
-Provides an overview of the project, installation instructions, usage guidelines, and documentation.
+- [ ] RF-DETR baseline training
+- [ ] Detection performance evaluation
+- [ ] Model optimization
+
+
+## Future Work
+
+- [ ] Expand dataset to more pollen categories
+- [ ] Self-supervised feature learning for pollen representation
+- [ ] Feature visualization and interpretation
+- [ ] Explainable AI methods for model analysis
+- [ ] Automated pollen recognition system deployment
+
+---
+
+# Experimental Goals
+
+This project aims to investigate:
+
+1. Whether transformer-based detection models can effectively recognize microscopic pollen structures.
+
+2. How self-supervised feature learning can improve representation quality under limited labeled data conditions.
+
+3. How explainable AI techniques can improve the interpretability of deep learning-based pollen recognition systems.
+
+---
+
+# Requirements
+
+All required Python packages are listed in:
+
+```
+requirements.txt
+```
+
+---
+
+# License
+
+This project is developed for academic research purposes.
