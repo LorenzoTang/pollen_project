@@ -1,8 +1,21 @@
+# Deep Learning
 torch
 torchvision
 rfdetr
-supervision
-pillow
+
+# Data Processing
+pandas
 numpy
-opencv-python
+pillow
+tqdm
+
+# Object Detection Dataset
+pycocotools
+
+# Visualization
 matplotlib
+opencv-python
+
+# Experiment
+scikit-learn
+jupyter
