@@ -1,79 +1,50 @@
+---
+description: Pollen detection research project rules
+alwaysApply: true
+---
+
 # Project Context
 
-You are assisting with a computer vision research project.
+This is a computer vision research project for pollen detection.
 
-## Project Goal
-
-This project focuses on pollen image recognition and detection.
-
-The final goal:
-- Detect different pollen categories
-- Locate pollen objects in microscope images
+Goal:
+- Recognize pollen categories
+- Detect pollen objects in microscope images
 - Train object detection models
 
-Current model:
+Current framework:
 - RF-DETR
-- PyTorch based
-
-## Technology Stack
-
-Language:
-- Python
-
-Deep Learning:
 - PyTorch
-- RF-DETR
-- torchvision
 
 Dataset:
-- Microscope pollen images
+- Microscope images
 - CSV annotations
 - COCO detection format
 
-## Coding Rules
+
+# Coding Rules
 
 1. Do not modify files unless explicitly requested.
 
 2. Before changing code:
-   - Explain the reason.
-   - Identify affected files.
+- Explain the reason.
+- Identify affected files.
 
-3. Prefer minimal changes.
-   Do not rewrite entire files unnecessarily.
+3. Make minimal changes.
 
-4. Preserve existing project structure.
+4. Do not rewrite entire files.
 
-5. Write clean research-quality code.
+5. Keep the existing project structure.
 
-6. Add comments for complex logic.
 
-7. Avoid unnecessary dependencies.
+# Research Rules
 
-## Data Rules
-
-Dataset files may be large.
+Always consider:
+- reproducibility
+- experiment tracking
+- modular design
 
 Never:
-- modify raw images
-- modify original annotations
-- delete dataset files
-
-Always create processed outputs separately.
-
-## Debugging Rules
-
-When debugging:
-1. Identify the error source.
-2. Explain why it happens.
-3. Suggest the smallest fix.
-
-Do not immediately rewrite the whole project.
-
-## Research Style
-
-Prefer:
-- reproducible experiments
-- clear configurations
-- modular code
-- logging results
-- saving checkpoints
+- modify raw data
+- delete checkpoints
+- overwrite experiment results
