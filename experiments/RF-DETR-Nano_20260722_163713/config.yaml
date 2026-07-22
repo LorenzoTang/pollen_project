@@ -1,0 +1,17 @@
+model:
+  name: RF-DETR-Nano
+  type: nano
+
+dataset:
+  format: COCO
+  classes: 5
+  path: C:/Users/22577/Desktop/pollen_project/data/processed/pollen_detection
+
+
+training:
+  epochs: 50
+  batch_size: 2
+  grad_accum_steps: 4
+  learning_rate: 0.0001
+  output_dir: C:/Users/22577/Desktop/pollen_project/checkpoints
+#此参数仅用于测试流程，不具备科学参考性。。。

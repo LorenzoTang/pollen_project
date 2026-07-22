@@ -39,6 +39,13 @@ def prepare_experiment_dir(config: Dict[str, Any], config_path: Path) -> Path:
     return experiment_dir
 
 
+def write_log(log_path: Path, message: str) -> None:
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(log_path, "a", encoding="utf-8") as f:
+        f.write(f"[{timestamp}] {message}\n")
+
+
 def load_config(config_path: Path) -> Dict[str, Any]:
     with open(config_path, encoding="utf-8") as f:
         return yaml.safe_load(f)
@@ -105,8 +112,23 @@ def main():
     model_cfg = config["model"]
     dataset_cfg = config["dataset"]
     training_cfg = config["training"]
+    experiment_name = config.get("experiment_name") or experiment_dir.name
+    log_path = experiment_dir / "logs" / "train.log"
+
+    write_log(log_path, "Training started")
+    write_log(log_path, f"experiment_name={experiment_name}")
+    write_log(log_path, f"model.type={model_cfg['type']}")
+    write_log(log_path, f"dataset.path={dataset_cfg['path']}")
+    write_log(log_path, f"epochs={training_cfg['epochs']}")
+    write_log(log_path, f"batch_size={training_cfg['batch_size']}")
+    write_log(log_path, f"learning_rate={training_cfg['learning_rate']}")
+    write_log(log_path, "Preflight check passed")
+    write_log(log_path, f"experiment_dir={experiment_dir}")
 
     model = build_model(model_cfg["type"])
+
+    write_log(log_path, "Begin training")
+    print(f"Training logs will be saved to: {log_path}")
 
     model.train(
         dataset_dir=dataset_cfg["path"],
@@ -116,6 +138,9 @@ def main():
         lr=training_cfg["learning_rate"],
         output_dir=str(experiment_dir / "checkpoints")
     )
+
+    write_log(log_path, "Training completed")
+    print("Training completed.")
 
 
 if __name__ == "__main__":
