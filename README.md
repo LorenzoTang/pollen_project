@@ -1,569 +1,392 @@
-# Pollen Project
+# PollenVision
 
-## Towards Deep Learning-Based Microscopic Pollen Recognition with Self-supervised Feature Learning and Explainable AI
-
-[English](#english-version) | [中文](#中文版本)
-
+- [English Version](#english-version)
+- [中文版本](#中文版本)
 
 ---
+
+<a name="english-version"></a>
 
 # English Version
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Research Objectives](#research-objectives)
+- [Current Status](#current-status)
+- [Baseline Experiment](#baseline-experiment)
+- [Project Structure](#project-structure)
+- [Environment](#environment)
+- [Dataset](#dataset)
+- [Training](#training)
+- [Technology Stack](#technology-stack)
+- [Roadmap](#roadmap)
 
 ## Overview
 
-Microscopic pollen recognition is an important task in environmental monitoring, allergy analysis, and biological research. Traditional pollen identification methods mainly rely on expert observation, which is time-consuming and requires extensive domain knowledge.
+PollenVision is a computer vision research project for microscopic pollen recognition.
 
-This project aims to develop an intelligent microscopic pollen recognition framework based on deep learning techniques, focusing on:
+Microscopic pollen recognition is a fine-grained visual understanding task. Different pollen categories can be highly similar in shape, texture, and size, which makes detection and classification challenging even for experienced human observers. The long-term goal of this project is to build a reliable and reproducible research pipeline for pollen object detection, feature learning, and model interpretation.
 
-- Automated pollen detection
-- Robust feature representation learning
-- Self-supervised feature learning under limited labeled data conditions
-- Explainable Artificial Intelligence (XAI) for model interpretation
+At the current stage, the project focuses on stabilizing a bbox-based detection pipeline using RF-DETR and preparing the engineering foundation for later research experiments.
 
+## Research Objectives
 
-The current development stage focuses on building a reliable pollen detection pipeline using RF-DETR, including dataset processing, annotation conversion, and model training preparation.
+The project is organized around three main research directions:
 
-Future work will investigate self-supervised learning strategies and explainable AI methods to improve model robustness and interpretability.
+- Object detection for microscopic pollen instances
+- Self-supervised feature learning for stronger representations under limited labels
+- Explainable AI for interpreting model behavior and detection decisions
 
+Relevant technical references:
 
----
+- RF-DETR: https://github.com/roboflow/rf-detr
+- DINOv2: https://github.com/facebookresearch/dinov2
+- Captum: https://github.com/pytorch/captum
 
-# Project Pipeline
+## Current Status
 
-The overall framework:
+Phase 1 of the project is complete.
 
-```
-Microscopic Pollen Images
+Based on the current repository state, the following parts of the RF-DETR baseline pipeline are already in place:
 
-          |
-          v
+- COCO annotation conversion
+- Dataset preparation
+- RF-DETR training pipeline
+- Validation pipeline
+- Checkpoint generation
+- Logging support in the training workflow
 
-Dataset Processing & Annotation Conversion
+The current repository contains a working smoke-test baseline built for pipeline validation rather than final scientific reporting.
 
-          |
-          v
+## Baseline Experiment
 
-COCO-format Detection Dataset
+The current baseline experiment is a smoke test using RF-DETR Nano.
 
-          |
-          v
+Configuration summary from the repository:
 
-RF-DETR Object Detection Model
+- Model: RF-DETR-Nano
+- Dataset format: COCO
+- Number of classes: 6
+- Epochs: 1
+- Batch size: 1
+- Gradient accumulation steps: 1
+- Learning rate: 0.0001
 
-          |
-          v
+Dataset split used in the experiment:
 
-Pollen Detection Results
+- Train: 19 images
+- Validation: 5 images
 
-          |
-          v
+Observed metrics:
 
-Feature Learning & Explainability Analysis
-```
+- mAP50-95: 0.2626
+- Precision: 0.4352
+- Recall: 0.4709
+- F1: 0.4519
+- EMA checkpoint mAP50-95: 0.2784
 
+This result should be treated as pipeline validation, not as a final research result.
 
----
+The corresponding experiment status is recorded in `PROJECT_STATUS.md`.
 
-# Project Structure
+## Project Structure
 
+The current repository structure is:
 
-```
+```text
 pollen_project/
-
 ├── README.md
-│
-├── checkpoints/
-│   └── Saved model weights and checkpoints
-│
+├── PROJECT_STATUS.md
+├── COCO_RFDETR_COMPATIBILITY_REPORT.md
+├── PROCESSED_DATA_VALIDATION_REPORT.md
+├── RAW_DATA_STRUCTURE_REPORT.md
 ├── configs/
-│   └── Training configuration files
-│
+│   └── rfdetr_baseline.yaml
 ├── data/
-│   ├── raw/
-│   │   └── Original microscopic pollen images and annotations
-│   │
-│   └── processed/
-│       └── Processed datasets in COCO detection format
-│
+│   ├── .gitkeep
+│   └── README.md
+├── docs/
+│   ├── ENVIRONMENT_DEPENDENCY_REPORT.md
+│   └── PROJECT_CONTEXT.md
 ├── notebooks/
-│   └── Dataset exploration, visualization and experiment records
-│
+│   └── .gitkeep
 ├── results/
-│   ├── figures/
-│   │   └── Visualization results
-│   │
-│   └── logs/
-│       └── Training logs and experiment records
-│
 ├── src/
-│   ├── convert_coco.py
 │   ├── check_data.py
-│   ├── visualize.py
-│   └── train_rfdetr.py
-│
-└── requirements.txt
+│   ├── convert_coco.py
+│   ├── evaluate_rfdetr.py
+│   ├── prepare_rfdetr_dataset.py
+│   ├── train_rfdetr.py
+│   └── visualize.py
+├── requirements.txt
+└── .gitignore
 ```
 
+## Environment
 
----
+The repository requirements are defined in `requirements.txt`.
 
-# Dataset Preparation
+Current dependencies include:
 
+- torch
+- torchvision
+- rfdetr
+- pandas
+- numpy
+- pillow
+- tqdm
+- pycocotools
+- matplotlib
+- opencv-python
+- scikit-learn
+- ipykernel
+- jupyter
 
-The original dataset contains:
+This project is intended to run in a local Python environment with PyTorch and RF-DETR support.
 
-- Microscopic pollen images
-- CSV-based bounding box annotations
+## Dataset
 
+The dataset is not uploaded to GitHub.
 
-Each image may contain multiple pollen instances.
+Repository status and configuration indicate the following data policy:
 
-The annotation file stores one object per row:
+- Raw data is managed locally
+- Processed data is generated automatically by the project scripts
+- The project currently uses COCO detection format
+- The current stage focuses on bbox annotations only
+- Segmentation polygons are not part of the current baseline pipeline
 
-```
-Image A
+## Training
 
-Object 1
-Object 2
-Object 3
-...
-```
-
-
-Therefore, the preprocessing pipeline groups annotations according to image names and converts them into COCO object detection format.
-
-
----
-
-# Data Processing Pipeline
-
-
-```
-Raw Dataset
-
-(Image + CSV Annotations)
-
-          |
-          v
-
-CSV Annotation Parsing
-
-          |
-          v
-
-Multi-object Bounding Box Aggregation
-
-          |
-          v
-
-COCO Annotation Generation
-
-          |
-          v
-
-RF-DETR Training Dataset
-```
-
-
-The processed dataset has been verified through:
-
-- Image and annotation consistency checking
-- Bounding box visualization
-- Category distribution analysis
-
-
----
-
-# Current Dataset Statistics
-
-
-The current baseline experiment uses five pollen categories:
-
-
-| Category | Images | Bounding Boxes |
-|----------|-------:|---------------:|
-| Thymbra | 12 | 157 |
-| Erica | 8 | 186 |
-| Castanea | 8 | 269 |
-| Eucalyptus | 12 | 175 |
-| Myrtus | 11 | 990 |
-
-
-Total:
-
-- Images: 51
-- Annotated pollen instances: 1777
-
-
-Processed dataset structure:
-
-```
-processed/
-
-├── train/
-│   └── images/
-│
-├── val/
-│   └── images/
-│
-└── annotations/
-    ├── train.json
-    └── val.json
-```
-
-
----
-
-# Model
-
-
-## RF-DETR
-
-
-The current object detection framework is based on RF-DETR, a transformer-based detection model.
-
-The objective is to automatically detect pollen instances from microscopic images.
-
-
-Input:
-
-```
-Microscopic pollen image
-```
-
-
-Output:
-
-```
-Detected pollen objects
-
-+
-
-Bounding boxes
-
-+
-
-Pollen categories
-```
-
-
----
-
-# Installation
-
-
-Install dependencies:
+Dataset preparation:
 
 ```bash
-pip install -r requirements.txt
+python src/prepare_rfdetr_dataset.py
 ```
 
-
----
-
-# Usage
-
-
-## 1. Convert Dataset
-
-
-Convert raw CSV annotations into COCO format:
-
-```bash
-python src/convert_coco.py
-```
-
-
----
-
-## 2. Verify Dataset
-
-
-Check image and annotation consistency:
-
-```bash
-python src/check_data.py
-```
-
-
----
-
-## 3. Visualize Bounding Boxes
-
-
-Visualize generated annotations:
-
-```bash
-python src/visualize.py
-```
-
-
----
-
-## 4. Train Model
-
-
-Train RF-DETR:
+Training:
 
 ```bash
 python src/train_rfdetr.py
 ```
 
+Evaluation:
 
----
-
-# Current Progress
-
-
-## Completed
-
-- [x] Project structure initialization
-- [x] RF-DETR environment setup
-- [x] Raw pollen dataset analysis
-- [x] CSV annotation parsing
-- [x] Multi-object annotation processing
-- [x] COCO-format dataset conversion
-- [x] Dataset consistency verification
-- [x] Bounding box visualization pipeline
-
-
-## In Progress
-
-- [ ] RF-DETR baseline training
-- [ ] Detection performance evaluation
-- [ ] Model optimization
-
-
-## Future Work
-
-- [ ] Expand dataset to more pollen categories
-- [ ] Self-supervised feature learning
-- [ ] Feature representation analysis
-- [ ] Explainable AI visualization
-- [ ] Automated pollen recognition system deployment
-
-
----
-
-# Research Goals
-
-
-This project aims to investigate:
-
-
-1. Whether transformer-based detection models can effectively recognize microscopic pollen structures.
-
-
-2. How self-supervised learning can improve feature representation when labeled data is limited.
-
-
-3. How explainable AI methods can improve the interpretability of deep learning-based pollen recognition systems.
-
-
----
-
-# Requirements
-
-
-All required Python packages are listed in:
-
-
-```
-requirements.txt
+```bash
+python src/evaluate_rfdetr.py
 ```
 
+The repository also includes supporting scripts for data checking, COCO conversion, and visualization.
 
+## Technology Stack
+
+The current project stack includes:
+
+- [PyTorch](https://pytorch.org/)
+- [TorchVision](https://pytorch.org/vision/stable/)
+- [RF-DETR](https://github.com/roboflow/rf-detr)
+- [COCO API / pycocotools](https://github.com/cocodataset/cocoapi)
+- [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/)
+
+## Roadmap
+
+The development roadmap is organized in phases:
+
+- Phase 2: Full baseline experiment
+- Phase 3: Self-supervised feature learning
+- Phase 4: Explainable pollen AI
 
 ---
 
-<br>
-
+<a name="中文版本"></a>
 
 # 中文版本
 
+## 目录
+
+- [项目简介](#项目简介)
+- [研究目标](#研究目标)
+- [当前状态](#当前状态-1)
+- [基线实验](#基线实验)
+- [项目结构](#项目结构-1)
+- [环境配置](#环境配置)
+- [数据集](#数据集)
+- [训练方法](#训练方法)
+- [技术栈](#技术栈)
+- [未来规划](#未来规划)
 
 ## 项目简介
 
+PollenVision 是一个面向显微花粉识别任务的计算机视觉研究项目。
 
-显微花粉识别是环境监测、过敏原分析以及生物研究中的重要任务。
+显微花粉识别属于细粒度视觉理解问题。不同花粉类别在形态、纹理和尺度上往往非常接近，因此检测和分类难度较高，即使对经验丰富的人工观察者也是如此。本项目的长期目标，是构建一个可靠、可复现的花粉目标检测研究流程，并为后续的特征学习与模型解释研究提供稳定基础。
 
-传统花粉识别方法主要依赖专家人工观察，存在效率较低、依赖专业经验等问题。
+当前阶段，项目重点是使用 RF-DETR 稳定 bbox-based detection 流程，并完善后续科研实验所需的工程基础。
 
+## 研究目标
 
-本项目旨在构建一个基于深度学习的智能显微花粉识别框架，重点研究：
+本项目围绕三个主要研究方向展开：
 
-- 自动化花粉目标检测
-- 鲁棒特征表示学习
-- 有限标注数据条件下的自监督特征学习
-- 基于可解释人工智能（XAI）的模型分析
+- 显微花粉实例目标检测
+- 在标注有限条件下进行自监督特征学习，以增强表征能力
+- 通过可解释人工智能分析模型行为与检测决策
 
+相关技术参考：
 
-目前项目主要围绕 RF-DETR 花粉检测系统展开，包括：
+- RF-DETR: https://github.com/roboflow/rf-detr
+- DINOv2: https://github.com/facebookresearch/dinov2
+- Captum: https://github.com/pytorch/captum
 
-- 原始数据处理
-- CSV标注解析
-- COCO格式数据集构建
-- 目标检测模型训练准备
+## 当前状态
 
+根据当前仓库状态，项目 Phase 1 已完成。
 
-后续将进一步探索自监督学习方法以及可解释人工智能技术。
+仓库中已经具备以下 RF-DETR 基线流水线能力：
 
+- COCO 标注转换
+- 数据集准备
+- RF-DETR 训练流程
+- 验证流程
+- checkpoint 生成
+- 训练流程中的日志记录
 
----
+当前仓库中的结果属于用于流程验证的 smoke test，不应视为最终科研结论。
 
-# 项目流程
+## 基线实验
 
+当前基线实验是使用 RF-DETR Nano 进行的 smoke test。
 
-整体流程：
+从仓库配置中可以确认的实验设置如下：
 
+- 模型：RF-DETR-Nano
+- 数据格式：COCO
+- 类别数：6
+- 训练轮数：1
+- batch size：1
+- 梯度累积步数：1
+- 学习率：0.0001
+
+本次实验使用的数据划分为：
+
+- 训练集：19 张图片
+- 验证集：5 张图片
+
+当前观察到的指标为：
+
+- mAP50-95：0.2626
+- Precision：0.4352
+- Recall：0.4709
+- F1：0.4519
+- EMA checkpoint mAP50-95：0.2784
+
+上述结果仅用于验证 pipeline 是否能够正常工作，不属于最终研究结果。
+
+相关阶段状态记录在 `PROJECT_STATUS.md` 中。
+
+## 项目结构
+
+当前仓库结构如下：
+
+```text
+pollen_project/
+├── README.md
+├── PROJECT_STATUS.md
+├── COCO_RFDETR_COMPATIBILITY_REPORT.md
+├── PROCESSED_DATA_VALIDATION_REPORT.md
+├── RAW_DATA_STRUCTURE_REPORT.md
+├── configs/
+│   └── rfdetr_baseline.yaml
+├── data/
+│   ├── .gitkeep
+│   └── README.md
+├── docs/
+│   ├── ENVIRONMENT_DEPENDENCY_REPORT.md
+│   └── PROJECT_CONTEXT.md
+├── notebooks/
+│   └── .gitkeep
+├── results/
+├── src/
+│   ├── check_data.py
+│   ├── convert_coco.py
+│   ├── evaluate_rfdetr.py
+│   ├── prepare_rfdetr_dataset.py
+│   ├── train_rfdetr.py
+│   └── visualize.py
+├── requirements.txt
+└── .gitignore
 ```
-显微花粉图像
 
-        ↓
+## 环境配置
 
-数据处理与标注转换
+项目依赖定义在 `requirements.txt` 中。
 
-        ↓
+当前依赖主要包括：
 
-COCO目标检测数据集
+- torch
+- torchvision
+- rfdetr
+- pandas
+- numpy
+- pillow
+- tqdm
+- pycocotools
+- matplotlib
+- opencv-python
+- scikit-learn
+- ipykernel
+- jupyter
 
-        ↓
+本项目适合在本地 Python 环境中运行，并需要具备 PyTorch 与 RF-DETR 相关支持。
 
-RF-DETR目标检测模型
+## 数据集
 
-        ↓
+数据集不上传到 GitHub。
 
-花粉检测结果
+根据当前仓库状态与配置，数据管理方式如下：
 
-        ↓
+- 原始数据由本地管理
+- 处理后的数据由项目脚本自动生成
+- 当前使用 COCO detection 格式
+- 目前阶段只处理 bbox 标注
+- 当前基线流程不包含 segmentation polygon
 
-特征学习与模型解释
+## 训练方法
+
+数据集准备：
+
+```bash
+python src/prepare_rfdetr_dataset.py
 ```
 
+训练：
 
----
-
-# 数据处理
-
-
-原始数据包括：
-
-- 显微花粉图片
-- CSV格式目标框标注
-
-
-由于一张图片可能包含多个花粉目标，因此CSV文件中同一个图片名称可能对应多行标注。
-
-
-数据处理流程：
-
-```
-原始数据
-
-(图像 + CSV标注)
-
-        ↓
-
-CSV解析
-
-        ↓
-
-多目标标注整合
-
-        ↓
-
-COCO格式转换
-
-        ↓
-
-模型训练数据集
+```bash
+python src/train_rfdetr.py
 ```
 
+评估：
 
-转换后的数据已经完成：
+```bash
+python src/evaluate_rfdetr.py
+```
 
-- 图片与标注一致性检查
-- Bounding Box可视化验证
-- 类别数量统计
+仓库中还提供了数据检查、COCO 转换和可视化相关脚本，便于完成完整的实验流程。
 
+## 技术栈
 
----
+当前项目使用的主要技术包括：
 
-# 当前数据规模
+- [PyTorch](https://pytorch.org/)
+- [TorchVision](https://pytorch.org/vision/stable/)
+- [RF-DETR](https://github.com/roboflow/rf-detr)
+- [COCO API / pycocotools](https://github.com/cocodataset/cocoapi)
+- [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/)
 
+## 未来规划
 
-当前baseline实验选择5类花粉：
+项目后续规划分为以下阶段：
 
-
-|类别|图片数量|目标框数量|
-|-|-:|-:|
-|Thymbra|12|157|
-|Erica|8|186|
-|Castanea|8|269|
-|Eucalyptus|12|175|
-|Myrtus|11|990|
-
-
-总计：
-
-- 图片数量：51
-- 花粉实例数量：1777
-
-
----
-
-# 当前进展
-
-
-## 已完成
-
-- [x] 项目结构搭建
-- [x] RF-DETR环境配置
-- [x] 原始花粉数据分析
-- [x] CSV标注解析
-- [x] 多目标标注处理
-- [x] COCO格式数据转换
-- [x] 数据一致性检查
-- [x] Bounding Box可视化验证
-
-
-## 当前进行
-
-- [ ] RF-DETR baseline训练
-- [ ] 检测性能评估
-- [ ] 模型优化
-
-
-## 后续计划
-
-- [ ] 扩展更多花粉类别
-- [ ] 引入自监督特征学习方法
-- [ ] 进行特征表示分析
-- [ ] 加入可解释人工智能模块
-- [ ] 构建自动化花粉识别系统
-
-
----
-
-# 项目目标
-
-
-本项目希望探索：
-
-
-1. Transformer检测模型在显微花粉识别任务中的有效性。
-
-
-2. 自监督学习是否能够提升小规模标注数据条件下的特征表示能力。
-
-
-3. 可解释人工智能方法是否能够提升深度学习模型的透明性和可信度。
-
-
----
-
-# License
-
-
-本项目用于学术研究目的。
+- Phase 2：完整基线实验
+- Phase 3：自监督特征学习
+- Phase 4：可解释花粉人工智能
