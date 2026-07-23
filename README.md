@@ -48,6 +48,14 @@ Relevant technical references:
 
 Phase 1 of the project is complete.
 
+In this project, Phase 1 completion means:
+
+- COCO data conversion pipeline is in place
+- RF-DETR bbox detection pipeline is established
+- Data loading validation has passed
+- Smoke test training and validation can run successfully
+- Checkpoints and logs can be generated
+
 Based on the current repository state, the following parts of the RF-DETR baseline pipeline are already in place:
 
 - COCO annotation conversion
@@ -57,13 +65,20 @@ Based on the current repository state, the following parts of the RF-DETR baseli
 - Checkpoint generation
 - Logging support in the training workflow
 
-The current repository contains a working smoke-test baseline built for pipeline validation rather than final scientific reporting.
+- The current repository contains a working smoke-test baseline built for pipeline validation rather than final scientific reporting.
+
+This means the engineering pipeline is running end to end, but the current result does not represent final research performance.
 
 ## Baseline Experiment
 
 The current baseline experiment is a smoke test using RF-DETR Nano.
 
 Configuration summary from the repository:
+
+- Configuration file: `configs/rfdetr_baseline.yaml`
+- Task: bbox object detection
+- Evaluation split: validation set
+- Purpose: pipeline validation only
 
 - Model: RF-DETR-Nano
 - Dataset format: COCO
@@ -86,9 +101,15 @@ Observed metrics:
 - F1: 0.4519
 - EMA checkpoint mAP50-95: 0.2784
 
-This result should be treated as pipeline validation, not as a final research result.
+The current metrics below are for pipeline validation only:
 
-The corresponding experiment status is recorded in `PROJECT_STATUS.md`.
+- mAP50-95: 0.2626
+- Precision: 0.4352
+- Recall: 0.4709
+- F1: 0.4519
+- EMA checkpoint mAP50-95: 0.2784
+
+These metrics should not be interpreted as final scientific results.
 
 ## Project Structure
 
@@ -98,17 +119,11 @@ The current repository structure is:
 pollen_project/
 ├── README.md
 ├── PROJECT_STATUS.md
-├── COCO_RFDETR_COMPATIBILITY_REPORT.md
-├── PROCESSED_DATA_VALIDATION_REPORT.md
-├── RAW_DATA_STRUCTURE_REPORT.md
 ├── configs/
 │   └── rfdetr_baseline.yaml
 ├── data/
 │   ├── .gitkeep
 │   └── README.md
-├── docs/
-│   ├── ENVIRONMENT_DEPENDENCY_REPORT.md
-│   └── PROJECT_CONTEXT.md
 ├── notebooks/
 │   └── .gitkeep
 ├── results/
@@ -150,12 +165,24 @@ This project is intended to run in a local Python environment with PyTorch and R
 The dataset is not uploaded to GitHub.
 
 Repository status and configuration indicate the following data policy:
+- Current stage data is local development and validation data
+- The project currently uses COCO bbox detection format
+- The current stage is for pipeline testing only
+- Future-stage data will be larger-scale formal research data
+- Future-stage data may include segmentation polygons
 
-- Raw data is managed locally
-- Processed data is generated automatically by the project scripts
-- The project currently uses COCO detection format
-- The current stage focuses on bbox annotations only
-- Segmentation polygons are not part of the current baseline pipeline
+Current stage data should not be confused with the final official training dataset.
+
+Future stage data is expected to support formal scientific experiments.
+
+## Quick Start
+
+```bash
+pip install -r requirements.txt
+python src/prepare_rfdetr_dataset.py
+python src/train_rfdetr.py
+python src/evaluate_rfdetr.py
+```
 
 ## Training
 
@@ -196,6 +223,15 @@ The development roadmap is organized in phases:
 - Phase 2: Full baseline experiment
 - Phase 3: Self-supervised feature learning
 - Phase 4: Explainable pollen AI
+
+## License
+
+This project is released under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
+
+The source code is released under the MIT License.
+Datasets are subject to their original licenses and are not included in this repository.
 
 ---
 
@@ -390,3 +426,21 @@ python src/evaluate_rfdetr.py
 - Phase 2：完整基线实验
 - Phase 3：自监督特征学习
 - Phase 4：可解释花粉人工智能
+
+## 快速开始
+
+```bash
+pip install -r requirements.txt
+python src/prepare_rfdetr_dataset.py
+python src/train_rfdetr.py
+python src/evaluate_rfdetr.py
+```
+
+## 开源协议
+
+本项目代码采用 MIT License 开源协议。
+
+详细内容请查看 [LICENSE](LICENSE) 文件。
+
+本项目代码遵循 MIT License。
+数据集遵循其原始授权协议，本仓库不包含数据文件。
