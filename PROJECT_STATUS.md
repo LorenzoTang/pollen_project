@@ -1,81 +1,127 @@
 # PROJECT_STATUS.md
 
-## 项目背景
+## Project Status
 
-本项目是一个显微花粉图像目标检测项目，目标是使用深度学习模型识别不同类别的花粉。
-
-当前主模型方向为 RF-DETR，现阶段主要使用 RF-DETR Nano 进行测试；后续在具备 GPU 环境后，可切换到 RF-DETR Medium 或更大模型。
+This document records the current state of the pollen detection project and is intended to be read-only status tracking.
 
 ---
 
-## 当前数据阶段说明
+## Phase 1: RF-DETR Baseline Pipeline
 
-当前仓库中的数据不是最终正式训练数据，而是用于开发和验证 pipeline 的测试数据。
+### 已完成
 
-当前数据特点：
-- COCO detection 格式
-- 包含 image、bbox、category
-- 不包含 segmentation polygon
+- 数据处理流程
+- COCO 数据格式
+- RF-DETR 训练链路
+- checkpoint 保存
+- logging
 
-当前阶段只需要支持 bbox-based detection，不要引入 segmentation 逻辑。
+### 当前数据结构
 
-未来正式训练数据预计会包含：
-- 多张显微图像
-- 多个花粉实例
-- 多类别
-- COCO 格式
-- bbox + segmentation polygon
+当前 processed 数据集位于：
+
+```text
+data/processed/rfdetr_pollen/
+├─ train/
+│  ├─ 000001.jpg
+│  ├─ 000002.jpg
+│  ├─ ...
+│  └─ _annotations.coco.json
+└─ valid/
+   ├─ 000001.jpg
+   ├─ 000002.jpg
+   ├─ ...
+   └─ _annotations.coco.json
+```
+
+当前结构特点：
+
+- `train/` 目录下图片直接位于 split 根目录
+- `valid/` 目录下图片直接位于 split 根目录
+- COCO JSON 中 `file_name` 保持纯文件名，例如 `000001.jpg`
+- 当前数据为开发和验证 pipeline 的测试数据，不是最终正式训练数据
+- 当前仅使用 COCO detection 的 bbox / category 信息，不涉及 segmentation polygon
+
+### 最近一次成功实验
+
+实验目录：
+
+```text
+experiments/RF-DETR-Nano_20260723_115102/
+```
+
+实验信息：
+
+- 模型：RF-DETR Nano
+- epoch: 1
+- train images: 19
+- valid images: 5
+
+主要 metric：
+
+- mAP 50:95: `0.2626`
+- Precision: `0.4352`
+- Recall: `0.4709`
+- F1: `0.4519`
+- EMA checkpoint mAP 50:95: `0.2784`
+
+补充说明：
+
+- smoke test 中先完成了 sanity check，再成功进入并完成 `Epoch 0`
+- 训练流程已验证可以完整跑通 bbox detection pipeline
+
+### checkpoint
+
+已生成 checkpoint：
+
+```text
+experiments/RF-DETR-Nano_20260723_115102/checkpoints/checkpoint_best_regular.pth
+```
+
+同时训练日志中记录了 EMA 最终 checkpoint 的保存结果，说明实验目录内的 checkpoint 保存链路正常工作。
+
+### 当前阶段结论
+
+**Phase 1 已完成，bbox detection pipeline 已打通。**
+
+当前已确认：
+
+- COCO JSON 可以正常加载
+- train / valid 图片路径正确
+- DataLoader 正常工作
+- PyTorch Lightning sanity check 通过
+- 成功完成 1 epoch 训练
+- checkpoint 已生成
 
 ---
 
-## 当前已有功能
+## Current Constraints
 
-仓库当前已经具备以下基础能力：
-
-- YAML 配置驱动训练参数
-- 模型类型配置化，支持 RFDETRNano / RFDETRMedium
-- COCO bbox 数据检查脚本
-- bbox 可视化脚本
-- 基础训练入口脚本
-- 基础数据目录与配置目录结构
+- 当前阶段只处理 bbox-based detection
+- 不修改 COCO 数据格式
+- 不引入 segmentation 逻辑
+- 不进行大规模目录重构
+- 不新增依赖
 
 ---
 
-## 已完成 Phase 1 内容
+## 下一阶段规划
 
-Phase 1 目前已经完成的内容包括：
+### Phase 2
 
-- 训练入口支持从 YAML 配置读取参数
-- 模型类型已配置化
-- 支持未来模型切换：nano -> RFDETRNano，medium -> RFDETRMedium
-- 已具备数据一致性检查能力
-- 已具备 bbox 可视化能力
-- 已有基础配置文件用于训练测试
+- 完整 20 类花粉数据训练
+- baseline evaluation
+- inference visualization
 
-当前判断：Phase 1 已完成基础 pipeline 骨架，但还没有形成完整的实验工程体系。
+### Phase 3
 
----
-
-## 当前存在的问题
-
-当前仓库还缺少以下工程化能力：
-
-- 训练过程日志记录
-- checkpoint 规范保存
-- evaluation 流程
-- inference 可视化流程
-- 实验可复现记录
-- 参数有效性校验
-- 统一命令行入口
-- 更完整的实验管理结构
-
-另外，当前阶段不应修改数据流程以适配 segmentation，也不应大规模重构目录结构。
+- 模型改进研究
+- self-supervised feature learning
+- explainability
 
 ---
 
-## 后续开发原则
-
-后续开发需要遵守以下原则：
+## Development Principles
 
 1. 不要大规模重构目录
 2. 不要删除已有文件
@@ -84,45 +130,3 @@ Phase 1 目前已经完成的内容包括：
 5. 每次只完成一个小任务
 6. 修改前先说明计划
 7. 修改后说明修改文件、修改原因和验证方式
-
----
-
-## 下一阶段计划
-
-下一阶段建议按以下顺序推进：
-
-1. 稳定训练工程流程
-   - 参数校验
-   - 配置健壮性
-   - 输出目录组织
-   - 训练前基础检查
-
-2. 完善 checkpoint 与实验记录
-   - 保存模型权重
-   - 保存配置快照
-   - 记录训练参数与数据版本
-
-3. 增加 evaluation 流程
-   - validation 评估
-   - 指标输出
-   - 结果保存
-
-4. 增加 inference 可视化
-   - 推理结果绘制
-   - 输出可视化图片
-
-5. 增强可复现性
-   - 固定随机种子
-   - 记录完整配置
-   - 保留实验上下文
-
----
-
-## 当前结论
-
-当前项目已经完成了基础 pipeline 骨架，适合继续向工程化训练流程推进。
-
-下一步最优先的工作是：
-- 稳定训练流程
-- 规范 checkpoint 和日志
-- 补齐 evaluation 与 inference 可视化

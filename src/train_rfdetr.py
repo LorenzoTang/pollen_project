@@ -75,9 +75,8 @@ def preflight_check(config: Dict[str, Any], config_path: Path) -> None:
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset path does not exist: {dataset_path}")
 
-    annotations_dir = dataset_path / "annotations"
-    train_ann = annotations_dir / "train.json"
-    val_ann = annotations_dir / "val.json"
+    train_ann = dataset_path / "train" / "_annotations.coco.json"
+    val_ann = dataset_path / "valid" / "_annotations.coco.json"
     if not train_ann.exists():
         raise FileNotFoundError(f"Missing COCO annotation file: {train_ann}")
     if not val_ann.exists():

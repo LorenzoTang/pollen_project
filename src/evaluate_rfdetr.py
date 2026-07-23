@@ -44,7 +44,7 @@ def find_first_val_image(dataset_path: Path) -> Path:
 
 
 def load_validation_images(dataset_path: Path):
-    ann_path = dataset_path / "annotations" / "val.json"
+    ann_path = dataset_path / "valid" / "_annotations.coco.json"
     if not ann_path.exists():
         raise FileNotFoundError(f"Validation annotation file does not exist: {ann_path}")
 
@@ -123,7 +123,7 @@ def main() -> None:
     for img_info in val_images:
         image_id = img_info["id"]
         file_name = img_info["file_name"]
-        image_path = dataset_path / "val" / "images" / file_name
+        image_path = dataset_path / "valid" / "images" / file_name
         if not image_path.exists():
             raise FileNotFoundError(f"Validation image not found: {image_path}")
 

@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import random
 import shutil
-from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -73,6 +72,16 @@ def split_images(images: List[Dict[str, Any]]) -> tuple[List[Dict[str, Any]], Li
     return shuffled[:split_index], shuffled[split_index:]
 
 
+def standardize_categories(categories: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return [
+        {
+            **cat,
+            "name": f"class_{idx}",
+        }
+        for idx, cat in enumerate(categories)
+    ]
+
+
 def build_coco_subset(
     split_images_list: List[Dict[str, Any]],
     annotations: List[Dict[str, Any]],
@@ -83,12 +92,12 @@ def build_coco_subset(
     coco_images: List[Dict[str, Any]] = []
     coco_annotations: List[Dict[str, Any]] = []
 
-    split_image_dir = OUTPUT_ROOT / split_name / "images"
+    split_image_dir = OUTPUT_ROOT / split_name
     split_image_dir.mkdir(parents=True, exist_ok=True)
 
     for new_id, img in enumerate(split_images_list, start=1):
         src = find_image_path(img["file_name"])
-        dst = split_image_dir / normalize_file_name(img["file_name"])
+        dst = split_image_dir / f"{new_id:06d}{src.suffix.lower()}"
         shutil.copy2(src, dst)
 
         image_id_map[img["id"]] = new_id
@@ -126,8 +135,15 @@ def build_coco_subset(
     return {
         "images": coco_images,
         "annotations": coco_annotations,
-        "categories": categories,
+        "categories": standardize_categories(categories),
     }
+
+
+def write_coco_json(split_name: str, coco_data: Dict[str, Any]) -> None:
+    annotations_path = OUTPUT_ROOT / split_name / "_annotations.coco.json"
+    annotations_path.parent.mkdir(parents=True, exist_ok=True)
+    with annotations_path.open("w", encoding="utf-8") as f:
+        json.dump(coco_data, f, ensure_ascii=False, indent=2)
 
 
 def prepare_dataset() -> None:
@@ -138,19 +154,17 @@ def prepare_dataset() -> None:
     annotations = data.get("annotations", [])
     categories = data.get("categories", [])
 
+    if OUTPUT_ROOT.exists():
+        shutil.rmtree(OUTPUT_ROOT)
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT_ROOT / "annotations").mkdir(parents=True, exist_ok=True)
 
     train_images, val_images = split_images(images)
 
     train_coco = build_coco_subset(train_images, annotations, categories, "train")
-    val_coco = build_coco_subset(val_images, annotations, categories, "val")
+    val_coco = build_coco_subset(val_images, annotations, categories, "valid")
 
-    with (OUTPUT_ROOT / "annotations" / "train.json").open("w", encoding="utf-8") as f:
-        json.dump(train_coco, f, ensure_ascii=False, indent=2)
-
-    with (OUTPUT_ROOT / "annotations" / "val.json").open("w", encoding="utf-8") as f:
-        json.dump(val_coco, f, ensure_ascii=False, indent=2)
+    write_coco_json("train", train_coco)
+    write_coco_json("valid", val_coco)
 
     summary = {
         "source_json": str(COCO_JSON),
@@ -163,7 +177,8 @@ def prepare_dataset() -> None:
         "categories": len(categories),
     }
 
-    with (OUTPUT_ROOT / "annotations" / "split_summary.json").open("w", encoding="utf-8") as f:
+    summary_path = OUTPUT_ROOT / "split_summary.json"
+    with summary_path.open("w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))
