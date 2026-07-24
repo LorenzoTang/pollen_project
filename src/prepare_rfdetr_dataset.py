@@ -7,10 +7,13 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 
-RAW_BASE = Path(r"data/raw/标签数据(1)")
+DEFAULT_RAW_BASE = Path(r"data/raw/标签数据(1)")
+DEFAULT_OUTPUT_ROOT = Path(r"data/processed/rfdetr_pollen")
+
+RAW_BASE = DEFAULT_RAW_BASE
 COCO_JSON = RAW_BASE / "coco" / "dataset.json"
 IMAGE_ROOT = RAW_BASE / "label"
-OUTPUT_ROOT = Path(r"data/processed/rfdetr_pollen")
+OUTPUT_ROOT = DEFAULT_OUTPUT_ROOT
 
 TRAIN_RATIO = 0.8
 SEED = 42
@@ -25,11 +28,11 @@ def normalize_file_name(file_name: str) -> str:
     return Path(file_name).name
 
 
-def find_image_path(file_name: str) -> Path:
-    return IMAGE_ROOT / normalize_file_name(file_name)
+def find_image_path(file_name: str, image_root: Path = IMAGE_ROOT) -> Path:
+    return image_root / normalize_file_name(file_name)
 
 
-def validate_dataset(data: Dict[str, Any]) -> None:
+def validate_dataset(data: Dict[str, Any], image_root: Path = IMAGE_ROOT) -> None:
     images = data.get("images", [])
     annotations = data.get("annotations", [])
     categories = data.get("categories", [])
@@ -48,7 +51,7 @@ def validate_dataset(data: Dict[str, Any]) -> None:
         file_name = img.get("file_name")
         if not file_name:
             raise ValueError(f"image entry missing file_name: {img}")
-        image_path = find_image_path(file_name)
+        image_path = find_image_path(file_name, image_root=image_root)
         if not image_path.exists():
             raise FileNotFoundError(f"missing image file: {image_path}")
 
@@ -76,9 +79,9 @@ def standardize_categories(categories: List[Dict[str, Any]]) -> List[Dict[str, A
     return [
         {
             **cat,
-            "name": f"class_{idx}",
+            "name": cat.get("name"),
         }
-        for idx, cat in enumerate(categories)
+        for cat in categories
     ]
 
 
@@ -87,16 +90,18 @@ def build_coco_subset(
     annotations: List[Dict[str, Any]],
     categories: List[Dict[str, Any]],
     split_name: str,
+    image_root: Path = IMAGE_ROOT,
+    output_root: Path = OUTPUT_ROOT,
 ) -> Dict[str, Any]:
     image_id_map: Dict[Any, int] = {}
     coco_images: List[Dict[str, Any]] = []
     coco_annotations: List[Dict[str, Any]] = []
 
-    split_image_dir = OUTPUT_ROOT / split_name
+    split_image_dir = output_root / split_name
     split_image_dir.mkdir(parents=True, exist_ok=True)
 
     for new_id, img in enumerate(split_images_list, start=1):
-        src = find_image_path(img["file_name"])
+        src = find_image_path(img["file_name"], image_root=image_root)
         dst = split_image_dir / f"{new_id:06d}{src.suffix.lower()}"
         shutil.copy2(src, dst)
 
@@ -139,36 +144,42 @@ def build_coco_subset(
     }
 
 
-def write_coco_json(split_name: str, coco_data: Dict[str, Any]) -> None:
-    annotations_path = OUTPUT_ROOT / split_name / "_annotations.coco.json"
+def write_coco_json(split_name: str, coco_data: Dict[str, Any], output_root: Path = OUTPUT_ROOT) -> None:
+    annotations_path = output_root / split_name / "_annotations.coco.json"
     annotations_path.parent.mkdir(parents=True, exist_ok=True)
     with annotations_path.open("w", encoding="utf-8") as f:
         json.dump(coco_data, f, ensure_ascii=False, indent=2)
 
 
-def prepare_dataset() -> None:
-    data = load_coco_dataset(COCO_JSON)
-    validate_dataset(data)
+def prepare_dataset(raw_base: Path | None = None, output_root: Path | None = None) -> Dict[str, Any]:
+    raw_base = Path(raw_base) if raw_base is not None else DEFAULT_RAW_BASE
+    output_root = Path(output_root) if output_root is not None else DEFAULT_OUTPUT_ROOT
+
+    coco_json = raw_base / "coco" / "dataset.json"
+    image_root = raw_base / "label"
+
+    data = load_coco_dataset(coco_json)
+    validate_dataset(data, image_root=image_root)
 
     images = data.get("images", [])
     annotations = data.get("annotations", [])
     categories = data.get("categories", [])
 
-    if OUTPUT_ROOT.exists():
-        shutil.rmtree(OUTPUT_ROOT)
-    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+    if output_root.exists():
+        shutil.rmtree(output_root)
+    output_root.mkdir(parents=True, exist_ok=True)
 
     train_images, val_images = split_images(images)
 
-    train_coco = build_coco_subset(train_images, annotations, categories, "train")
-    val_coco = build_coco_subset(val_images, annotations, categories, "valid")
+    train_coco = build_coco_subset(train_images, annotations, categories, "train", image_root=image_root, output_root=output_root)
+    val_coco = build_coco_subset(val_images, annotations, categories, "valid", image_root=image_root, output_root=output_root)
 
-    write_coco_json("train", train_coco)
-    write_coco_json("valid", val_coco)
+    write_coco_json("train", train_coco, output_root=output_root)
+    write_coco_json("valid", val_coco, output_root=output_root)
 
     summary = {
-        "source_json": str(COCO_JSON),
-        "output_root": str(OUTPUT_ROOT),
+        "source_json": str(coco_json),
+        "output_root": str(output_root),
         "seed": SEED,
         "train_images": len(train_coco["images"]),
         "val_images": len(val_coco["images"]),
@@ -177,11 +188,12 @@ def prepare_dataset() -> None:
         "categories": len(categories),
     }
 
-    summary_path = OUTPUT_ROOT / "split_summary.json"
+    summary_path = output_root / "split_summary.json"
     with summary_path.open("w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))
+    return summary
 
 
 if __name__ == "__main__":

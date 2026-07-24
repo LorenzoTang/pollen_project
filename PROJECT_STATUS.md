@@ -6,15 +6,55 @@ This document records the current state of the pollen detection project and is i
 
 ---
 
-## Phase 1: RF-DETR Baseline Pipeline
+## Phase 1: Pipeline Engineering and Baseline Infrastructure
 
 ### 已完成
 
-- 数据处理流程
-- COCO 数据格式
-- RF-DETR 训练链路
-- checkpoint 保存
-- logging
+- Raw dataset validation
+- COCO annotation checking
+- Dataset preparation pipeline
+- COCO validation
+- RF-DETR training integration
+- Evaluation integration
+- Unified pipeline entry: `src/run_pipeline.py`
+- Pipeline report generation: `experiments/pipeline_report.json`
+
+### 数据转换
+
+- `prepare_rfdetr_dataset.py`
+- 自动生成 `train/valid`
+- 生成 RF-DETR 兼容 COCO 格式
+
+### Pipeline
+
+- `src/run_pipeline.py`
+
+当前 pipeline 执行流程：
+
+```text
+data/raw
+↓
+run_pipeline.py
+↓
+raw data check
+↓
+dataset preparation
+↓
+COCO validation
+↓
+RF-DETR training
+↓
+evaluation
+↓
+experiment report
+```
+
+### 训练流程
+
+- RF-DETR Nano baseline 已成功运行
+- sanity check 已通过
+- checkpoint 可以生成
+- logging 已存在
 
 ### 当前数据结构
 
@@ -82,21 +122,27 @@ experiments/RF-DETR-Nano_20260723_115102/checkpoints/checkpoint_best_regular.pth
 
 ### 当前阶段结论
 
-**Phase 1 已完成，bbox detection pipeline 已打通。**
+**当前项目已进入 Phase 1：Pipeline Engineering and Baseline Infrastructure。**
 
 当前已确认：
 
+- raw 数据检查可以运行
 - COCO JSON 可以正常加载
-- train / valid 图片路径正确
-- DataLoader 正常工作
-- PyTorch Lightning sanity check 通过
-- 成功完成 1 epoch 训练
+- train / valid 数据可以转换并验证
+- pipeline 可以串联数据检查、数据转换和 COCO validation
+- RF-DETR 训练入口仍然可单独运行
 - checkpoint 已生成
+- 评估流程已接入 pipeline 并可生成实验报告
 
 ---
 
 ## Current Constraints
 
+- 当前数据集规模仍然是用于 pipeline 验证的测试数据
+- Full-scale baseline experiment 尚未开始
+- self-supervised learning 尚未开始
+- explainable AI 模块尚未开始
+- evaluation 系统已可用，但仍是基础版本
 - 当前阶段只处理 bbox-based detection
 - 不修改 COCO 数据格式
 - 不引入 segmentation 逻辑
@@ -107,26 +153,20 @@ experiments/RF-DETR-Nano_20260723_115102/checkpoints/checkpoint_best_regular.pth
 
 ## 下一阶段规划
 
-### Phase 2
+### Phase 2：Full baseline experiment
 
-- 完整 20 类花粉数据训练
-- baseline evaluation
-- inference visualization
+- Full dataset training
+- Fixed train/validation/test split
+- Reproducible configuration
+- Complete metric reporting
+- Model comparison experiments
 
 ### Phase 3
 
-- 模型改进研究
 - self-supervised feature learning
-- explainability
+
+### Phase 4
+
+- explainable AI
 
 ---
-
-## Development Principles
-
-1. 不要大规模重构目录
-2. 不要删除已有文件
-3. 不要修改 COCO 数据格式
-4. 不要加入 segmentation 模块
-5. 每次只完成一个小任务
-6. 修改前先说明计划
-7. 修改后说明修改文件、修改原因和验证方式

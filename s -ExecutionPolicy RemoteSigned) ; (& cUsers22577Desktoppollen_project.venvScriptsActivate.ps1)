@@ -1,0 +1,256 @@
+[1mdiff --git a/PROJECT_STATUS.md b/PROJECT_STATUS.md[m
+[1mindex 17f5650..797ce1c 100644[m
+[1m--- a/PROJECT_STATUS.md[m
+[1m+++ b/PROJECT_STATUS.md[m
+[36m@@ -6,15 +6,55 @@[m [mThis document records the current state of the pollen detection project and is i[m
+ [m
+ ---[m
+ [m
+[31m-## Phase 1: RF-DETR Baseline Pipeline[m
+[32m+[m[32m## Phase 1: Pipeline Engineering and Baseline Infrastructure[m
+ [m
+ ### 已完成[m
+ [m
+[31m-- 数据处理流程[m
+[31m-- COCO 数据格式[m
+[31m-- RF-DETR 训练链路[m
+[31m-- checkpoint 保存[m
+[31m-- logging[m
+[32m+[m[32m- Raw dataset validation[m
+[32m+[m[32m- COCO annotation checking[m
+[32m+[m[32m- Dataset preparation pipeline[m
+[32m+[m[32m- COCO validation[m
+[32m+[m[32m- RF-DETR training integration[m
+[32m+[m[32m- Evaluation integration[m
+[32m+[m[32m- Unified pipeline entry: `src/run_pipeline.py`[m
+[32m+[m[32m- Pipeline report generation: `experiments/pipeline_report.json`[m
+[32m+[m
+[32m+[m[32m### 数据转换[m
+[32m+[m
+[32m+[m[32m- `prepare_rfdetr_dataset.py`[m
+[32m+[m[32m- 自动生成 `train/valid`[m
+[32m+[m[32m- 生成 RF-DETR 兼容 COCO 格式[m
+[32m+[m
+[32m+[m[32m### Pipeline[m
+[32m+[m
+[32m+[m[32m- `src/run_pipeline.py`[m
+[32m+[m
+[32m+[m[32m当前 pipeline 执行流程：[m
+[32m+[m
+[32m+[m[32m```text[m
+[32m+[m[32mdata/raw[m
+[32m+[m[32m↓[m
+[32m+[m[32mrun_pipeline.py[m
+[32m+[m[32m↓[m
+[32m+[m[32mraw data check[m
+[32m+[m[32m↓[m
+[32m+[m[32mdataset preparation[m
+[32m+[m[32m↓[m
+[32m+[m[32mCOCO validation[m
+[32m+[m[32m↓[m
+[32m+[m[32mRF-DETR training[m
+[32m+[m[32m↓[m
+[32m+[m[32mevaluation[m
+[32m+[m[32m↓[m
+[32m+[m[32mexperiment report[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m### 训练流程[m
+[32m+[m
+[32m+[m[32m- RF-DETR Nano baseline 已成功运行[m
+[32m+[m[32m- sanity check 已通过[m
+[32m+[m[32m- checkpoint 可以生成[m
+[32m+[m[32m- logging 已存在[m
+ [m
+ ### 当前数据结构[m
+ [m
+[36m@@ -82,21 +122,27 @@[m [mexperiments/RF-DETR-Nano_20260723_115102/checkpoints/checkpoint_best_regular.pth[m
+ [m
+ ### 当前阶段结论[m
+ [m
+[31m-**Phase 1 已完成，bbox detection pipeline 已打通。**[m
+[32m+[m[32m**当前项目已进入 Phase 1：Pipeline Engineering and Baseline Infrastructure。**[m
+ [m
+ 当前已确认：[m
+ [m
+[32m+[m[32m- raw 数据检查可以运行[m
+ - COCO JSON 可以正常加载[m
+[31m-- train / valid 图片路径正确[m
+[31m-- DataLoader 正常工作[m
+[31m-- PyTorch Lightning sanity check 通过[m
+[31m-- 成功完成 1 epoch 训练[m
+[32m+[m[32m- train / valid 数据可以转换并验证[m
+[32m+[m[32m- pipeline 可以串联数据检查、数据转换和 COCO validation[m
+[32m+[m[32m- RF-DETR 训练入口仍然可单独运行[m
+ - checkpoint 已生成[m
+[32m+[m[32m- 评估流程已接入 pipeline 并可生成实验报告[m
+ [m
+ ---[m
+ [m
+ ## Current Constraints[m
+ [m
+[32m+[m[32m- 当前数据集规模仍然是用于 pipeline 验证的测试数据[m
+[32m+[m[32m- Full-scale baseline experiment 尚未开始[m
+[32m+[m[32m- self-supervised learning 尚未开始[m
+[32m+[m[32m- explainable AI 模块尚未开始[m
+[32m+[m[32m- evaluation 系统已可用，但仍是基础版本[m
+ - 当前阶段只处理 bbox-based detection[m
+ - 不修改 COCO 数据格式[m
+ - 不引入 segmentation 逻辑[m
+[36m@@ -107,26 +153,20 @@[m [mexperiments/RF-DETR-Nano_20260723_115102/checkpoints/checkpoint_best_regular.pth[m
+ [m
+ ## 下一阶段规划[m
+ [m
+[31m-### Phase 2[m
+[32m+[m[32m### Phase 2：Full baseline experiment[m
+ [m
+[31m-- 完整 20 类花粉数据训练[m
+[31m-- baseline evaluation[m
+[31m-- inference visualization[m
+[32m+[m[32m- Full dataset training[m
+[32m+[m[32m- Fixed train/validation/test split[m
+[32m+[m[32m- Reproducible configuration[m
+[32m+[m[32m- Complete metric reporting[m
+[32m+[m[32m- Model comparison experiments[m
+ [m
+ ### Phase 3[m
+ [m
+[31m-- 模型改进研究[m
+ - self-supervised feature learning[m
+[31m-- explainability[m
+ [m
+[31m----[m
+[32m+[m[32m### Phase 4[m
+ [m
+[31m-## Development Principles[m
+[32m+[m[32m- explainable AI[m
+ [m
+[31m-1. 不要大规模重构目录[m
+[31m-2. 不要删除已有文件[m
+[31m-3. 不要修改 COCO 数据格式[m
+[31m-4. 不要加入 segmentation 模块[m
+[31m-5. 每次只完成一个小任务[m
+[31m-6. 修改前先说明计划[m
+[31m-7. 修改后说明修改文件、修改原因和验证方式[m
+[32m+[m[32m---[m
+[1mdiff --git a/src/check_data.py b/src/check_data.py[m
+[1mindex c020fb3..281ddc9 100644[m
+[1m--- a/src/check_data.py[m
+[1m+++ b/src/check_data.py[m
+[36m@@ -3,80 +3,125 @@[m [mfrom pathlib import Path[m
+ from collections import Counter[m
+ [m
+ [m
+[31m-root = Path([m
+[31m-    r"data/processed/pollen_detection"[m
+[31m-)[m
+[32m+[m[32mDEFAULT_ROOT = Path(r"data/raw/标签数据(1)")[m
+ [m
+ [m
+[31m-for split in ["train", "val"]:[m
+[32m+[m[32mdef _load_coco_json(raw_root: Path, split: str):[m
+[32m+[m[32m    candidates = [[m
+[32m+[m[32m        raw_root / "annotations" / f"{split}.json",[m
+[32m+[m[32m        raw_root / "coco" / "dataset.json",[m
+[32m+[m[32m    ][m
+ [m
+[31m-    print("================")[m
+[31m-    print(split)[m
+[32m+[m[32m    for json_path in candidates:[m
+[32m+[m[32m        if json_path.exists():[m
+[32m+[m[32m            with json_path.open("r", encoding="utf-8") as f:[m
+[32m+[m[32m                return json.load(f), json_path[m
+ [m
+[31m-[m
+[31m-    img_dir = ([m
+[31m-        root /[m
+[31m-        split /[m
+[31m-        "images"[m
+[31m-    )[m
+[31m-[m
+[31m-[m
+[31m-    json_path = ([m
+[31m-        root /[m
+[31m-        "annotations" /[m
+[31m-        f"{split}.json"[m
+[31m-    )[m
+[31m-[m
+[31m-[m
+[31m-    with open([m
+[31m-        json_path,[m
+[31m-        encoding="utf-8"[m
+[31m-    ) as f:[m
+[31m-[m
+[31m-        data=json.load(f)[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-    print([m
+[31m-        "图片数量:",[m
+[31m-        len(list(img_dir.glob("*")))[m
+[31m-    )[m
+[31m-[m
+[31m-[m
+[31m-    print([m
+[31m-        "json images:",[m
+[31m-        len(data["images"])[m
+[32m+[m[32m    raise FileNotFoundError([m
+[32m+[m[32m        f"No COCO annotation file found for split={split}. Tried: {candidates}"[m
+     )[m
+ [m
+ [m
+[31m-    print([m
+[31m-        "bbox数量:",[m
+[31m-        len(data["annotations"])[m
+[31m-    )[m
+[31m-[m
+[31m-[m
+[31m-    counter=Counter()[m
+[31m-[m
+[31m-[m
+[31m-    for ann in data["annotations"]:[m
+[31m-[m
+[31m-        counter[[m
+[31m-            ann["category_id"][m
+[31m-        ] += 1[m
+[31m-[m
+[31m-[m
+[31m-    print([m
+[31m-        "类别分布:",[m
+[31m-        counter[m
+[31m-    )[m
+[31m-[m
+[31m-[m
+[31m-    print([m
+[31m-        "类别名称:"[m
+[31m-    )[m
+[31m-[m
+[31m-    for c in data["categories"]:[m
+[31m-        print([m
+[31m-            c["id"],[m
+[31m-            c["name"][m
+[31m-        )[m
+\ No newline at end of file[m
+[32m+[m[32mdef check_raw_data(raw_root):[m
+[32m+[m[32m    raw_root = Path(raw_root)[m
+[32m+[m[32m    report = {[m
+[32m+[m[32m        "raw_root": str(raw_root),[m
+[32m+[m[32m        "status": "passed",[m
+[32m+[m[32m        "splits": {},[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    for split in ["train", "val"]:[m
+[32m+[m
+[32m+[m[32m        split_report = {[m
+[32m+[m[32m            "status": "passed",[m
+[32m+[m[32m            "annotation_file": None,[m
+[32m+[m[32m            "image_count_annotation": 0,[m
+[32m+[m[32m            "image_count_files": 0,[m
+[32m+[m[32m            "annotation_count": 0,[m
+[32m+[m[32m            "category_count": 0,[m
+[32m+[m[32m            "category_distribution": {},[m
+[32m+[m[32m            "categories": [],[m
+[32m+[m[32m            "missing_images": [],[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        print
