@@ -14,7 +14,7 @@ if __name__ == '__main__':
     )
 
     # 加载图片
-    image = Image.open(r"D:\Development\__Data\test\Castanea_test.JPG")
+    image = Image.open(r"D:\Development\__Data\test\2026.4.9 (1).jpg")
 
     # 推理
     results = model.predict(image)
