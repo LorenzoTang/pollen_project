@@ -391,7 +391,7 @@ The split uses seed 42 and a configured training ratio of 0.7, yielding the coun
 
 The dataset has a pronounced long-tail distribution: the class 樟 accounts for approximately 61% of all annotations, while 广玉兰 has only one box. Another 52 raw images are absent from the current COCO annotations and must not be assumed to be negative samples. There is no independent test set. Grouping and leakage checks for images from the same slide, adjacent fields of view, and near duplicates remain necessary.
 
-**Data availability:** raw images, annotations, prepared data, and training weights are not distributed in this repository. Running the workflow requires a dataset you are permitted to use; reproducing the numbers below also requires the corresponding data version and experiment artifacts. See the [dataset guide](data/README.md) for the layout and [DATA_V2_AUDIT.json](docs/DATA_V2_AUDIT.json) for the current audit records. Chinese category names are retained to match the annotation and report labels.
+**Data availability:** raw images, annotations, prepared data, and training weights are not distributed in this repository. Running the workflow requires a dataset you are permitted to use; reproducing the numbers below also requires the corresponding data version and experiment artifacts. See the [dataset guide](data/README.md#english) for the layout and [DATA_V2_AUDIT.json](docs/DATA_V2_AUDIT.json) for the current audit records. Chinese category names are retained to match the annotation and report labels.
 
 ### Experimental setup and results
 
@@ -440,7 +440,7 @@ Changes are computed from unrounded values and may therefore differ slightly fro
 
 The 640 configuration improved aggregate detection performance, reducing false negatives from 52 to 39 while increasing false positives from 19 to 34. AP improved for 构 and 银杏 and decreased slightly for 蓝花楹. 白玉兰 and 山玉兰 still had no correct detections at the fixed threshold. Training took approximately 25.25 minutes versus 19.76 for run A, including runtime overhead.
 
-**Limitations:** these are single-seed validation results. The validation set is also used to select checkpoints, covers only 9 of 15 classes, and is not an independent test set. Classes without validation annotations are reported as N/A. The results establish neither statistical significance nor reliable performance across all classes. Full per-class outcomes and experiment constraints are documented in the [resolution report](docs/RESOLUTION_EXPERIMENT.md).
+**Limitations:** these are single-seed validation results. The validation set is also used to select checkpoints, covers only 9 of 15 classes, and is not an independent test set. Classes without validation annotations are reported as N/A. The results establish neither statistical significance nor reliable performance across all classes. Full per-class outcomes and experiment constraints are documented in the [resolution report](docs/RESOLUTION_EXPERIMENT.md#english).
 
 The 640 configuration is therefore a candidate baseline for further optimization, pending additional minority-class data, experiments across seeds, and independent testing. Training time was recorded in the local environment and is not evidence of inference latency or real-time deployment capability.
 
@@ -476,7 +476,7 @@ The setup script creates `.venv`, installs `torch/torchvision` from the official
 
 ### Data preparation
 
-**The GitHub repository does not include raw images, annotations, prepared datasets, or training weights.** Obtain data you are permitted to use and place it according to the [dataset guide](data/README.md), or update the paths in `configs/rfdetr_baseline.yaml`.
+**The GitHub repository does not include raw images, annotations, prepared datasets, or training weights.** Obtain data you are permitted to use and place it according to the [dataset guide](data/README.md#english), or update the paths in `configs/rfdetr_baseline.yaml`.
 
 ```powershell
 & .\.venv\Scripts\python.exe .\src\check_data.py --config .\configs\rfdetr_baseline.yaml
@@ -519,7 +519,7 @@ Other entry points and tasks:
 
 Rerunning the queue skips successful tasks. To recover failed tasks, append `--resume-failed` to the same command. Use a new queue directory if task configurations or data change.
 
-Training evaluates automatically, so there is no need to search for the “latest” weights. For manual reevaluation, use the experiment's saved full `config.yaml` and `--experiment-dir` to preserve the 640 setting where applicable. See the [training guide](docs/TRAINING_GUIDE.md) for complete commands and recovery rules.
+Training evaluates automatically, so there is no need to search for the “latest” weights. For manual reevaluation, use the experiment's saved full `config.yaml` and `--experiment-dir` to preserve the 640 setting where applicable. See the [training guide](docs/TRAINING_GUIDE.md#english) for complete commands and recovery rules.
 
 ### Experiment artifacts
 
@@ -584,11 +584,11 @@ These future optimizations have not been implemented. The current training entry
 
 | Document | Purpose |
 | --- | --- |
-| [Dataset guide](data/README.md) | Local data layout, category ID mapping, and data availability |
-| [Training guide](docs/TRAINING_GUIDE.md) | Detailed environment setup, data preparation, training, recovery, and reporting instructions |
-| [Resolution experiment](docs/RESOLUTION_EXPERIMENT.md) | A/D constraints, per-class results, and comparison commands |
+| [Dataset guide](data/README.md#english) | Local data layout, category ID mapping, and data availability |
+| [Training guide](docs/TRAINING_GUIDE.md#english) | Detailed environment setup, data preparation, training, recovery, and reporting instructions |
+| [Resolution experiment](docs/RESOLUTION_EXPERIMENT.md#english) | A/D constraints, per-class results, and comparison commands |
 | [Data audit records](docs/DATA_V2_AUDIT.json) | v2 data statistics and file audit information |
-| [Historical training-readiness snapshot](docs/TRAINING_READINESS_V2.md) | State at the first smoke test on 2026-10-12; consult this README and the experiment report for subsequent progress |
+| [Historical training-readiness snapshot](docs/TRAINING_READINESS_V2.md#english) | State at the first smoke test on 2026-10-12; consult this README and the experiment report for subsequent progress |
 
 The current implementation relies on [RF-DETR](https://github.com/roboflow/rf-detr), [PyTorch](https://pytorch.org/), and the [COCO API](https://github.com/cocodataset/cocoapi). [DINOv2](https://github.com/facebookresearch/dinov2) and [Captum](https://github.com/pytorch/captum) are technical references for future representation learning and model interpretation; this repository does not yet provide a separate DINOv2 self-supervised training workflow or Captum integration.
 
