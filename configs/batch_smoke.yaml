@@ -1,0 +1,6 @@
+base_config: configs/rfdetr_smoke.yaml
+queue_dir: experiments/batch-v2-report-smoke
+tasks:
+  - name: smoke-report
+    training:
+      epochs: 1

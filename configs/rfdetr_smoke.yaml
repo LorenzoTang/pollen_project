@@ -1,0 +1,35 @@
+project:
+  seed: 42
+
+raw_data:
+  root: data/数据
+
+processed_data:
+  root: data/processed/rfdetr_pollen_v2
+
+model:
+  name: RF-DETR-Nano-Smoke
+  type: nano
+
+dataset:
+  format: COCO
+  classes: 15
+  path: data/processed/rfdetr_pollen_v2
+
+data_split:
+  train_ratio: 0.7
+
+training:
+  epochs: 1
+  batch_size: 2
+  grad_accum_steps: 1
+  learning_rate: 0.0001
+  num_workers: 0
+  device: cuda
+  require_cuda: true
+
+experiment:
+  root: experiments
+
+steps:
+  evaluate: false

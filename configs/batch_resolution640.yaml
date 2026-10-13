@@ -1,0 +1,7 @@
+base_config: configs/rfdetr_baseline.yaml
+queue_dir: experiments/resolution640-50epochs
+tasks:
+  - name: D-nano640-lr1e4-accum1
+    training:
+      epochs: 50
+      resolution: 640

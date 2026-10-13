@@ -1,8 +1,9 @@
 # =========================
 # Dataset
 # =========================
-data/raw/
-data/processed/
+data/*
+!data/README.md
+!data/.gitkeep
 mini_dataset/
 
 # =========================
@@ -21,6 +22,12 @@ runs/
 logs/
 wandb/
 experiments/
+*.log
+
+# Local migration / machine diagnostics
+/sync_manifest.json
+/winsock_backup_path.txt
+/docs/CLEANUP_REPORT.json
 
 # =========================
 # Python cache

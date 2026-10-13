@@ -1,0 +1,18 @@
+base_config: configs/rfdetr_baseline.yaml
+queue_dir: experiments/batch-v2-50epochs
+tasks:
+  - name: A-lr1e4-accum1
+    training:
+      epochs: 50
+      learning_rate: 0.0001
+      grad_accum_steps: 1
+  - name: B-lr5e5-accum1
+    training:
+      epochs: 50
+      learning_rate: 0.00005
+      grad_accum_steps: 1
+  - name: C-lr1e4-accum2
+    training:
+      epochs: 50
+      learning_rate: 0.0001
+      grad_accum_steps: 2

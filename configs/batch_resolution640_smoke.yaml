@@ -1,0 +1,7 @@
+base_config: configs/rfdetr_baseline.yaml
+queue_dir: experiments/resolution640-smoke
+tasks:
+  - name: nano640-smoke
+    training:
+      epochs: 1
+      resolution: 640

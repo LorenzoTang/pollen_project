@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import argparse
 from pathlib import Path
 import json
 import sys
@@ -5,13 +8,12 @@ from typing import Any, Dict
 from collections import defaultdict
 from datetime import datetime
 
-import yaml
-from PIL import Image
-from rfdetr import RFDETRMedium, RFDETRNano
-from pycocotools.coco import COCO
-
-
-CONFIG_PATH = Path(__file__).resolve().parent.parent / "configs" / "rfdetr_baseline.yaml"
+try:
+    from .config_utils import DEFAULT_CONFIG_PATH, PROJECT_ROOT, get_required_path, load_config, resolve_project_path
+    from .detection_metrics import coco_metrics
+except ImportError:  # pragma: no cover - supports direct script execution
+    from config_utils import DEFAULT_CONFIG_PATH, PROJECT_ROOT, get_required_path, load_config, resolve_project_path
+    from detection_metrics import coco_metrics
 
 
 SUPPORTED_MODEL_TYPES = {"nano", "medium"}
@@ -19,13 +21,25 @@ SUPPORTED_MODEL_TYPES = {"nano", "medium"}
 IOU_THRESHOLDS = [round(x / 100, 2) for x in range(50, 100, 5)]
 
 
-def load_config(config_path: Path) -> Dict[str, Any]:
-    with open(config_path, encoding="utf-8") as f:
-        return yaml.safe_load(f)
+def build_model(model_type: str, checkpoint_path: Path | None = None, resolution: int | None = None):
+    try:
+        from rfdetr import RFDETR, RFDETRMedium, RFDETRNano
+    except ImportError as exc:
+        raise RuntimeError(
+            "RF-DETR is not installed. Install project dependencies before evaluation."
+        ) from exc
 
-
-def build_model(model_type: str):
     model_type = model_type.lower()
+    if checkpoint_path is not None:
+        if not checkpoint_path.exists():
+            raise FileNotFoundError(f"Checkpoint does not exist: {checkpoint_path}")
+        kwargs = {}
+        if resolution is not None:
+            if type(resolution) is not int or resolution <= 0 or resolution % 32:
+                raise ValueError("Evaluation resolution must be a positive integer multiple of 32")
+            kwargs["resolution"] = resolution
+            kwargs["positional_encoding_size"] = resolution // 16
+        return RFDETR.from_checkpoint(str(checkpoint_path), trust_checkpoint=True, **kwargs)
     if model_type == "nano":
         return RFDETRNano()
     if model_type == "medium":
@@ -48,6 +62,13 @@ def find_first_val_image(dataset_path: Path) -> Path:
 
 
 def load_validation_images(dataset_path: Path):
+    try:
+        from pycocotools.coco import COCO
+    except ImportError as exc:
+        raise RuntimeError(
+            "pycocotools is not installed. Install project dependencies before evaluation."
+        ) from exc
+
     ann_path = dataset_path / "valid" / "_annotations.coco.json"
     if not ann_path.exists():
         raise FileNotFoundError(f"Validation annotation file does not exist: {ann_path}")
@@ -77,29 +98,34 @@ def find_latest_experiment_dir(project_root: Path) -> Path | None:
     return max(candidates, key=lambda p: p.stat().st_mtime)
 
 
-def resolve_runtime_paths(config: Dict[str, Any], project_root: Path):
+def resolve_runtime_paths(
+    config: Dict[str, Any],
+    project_root: Path,
+    experiment_dir_override: Path | None = None,
+):
     evaluation_cfg = config.get("evaluation", {})
     training_cfg = config.get("training", {})
 
-    experiment_dir = evaluation_cfg.get("experiment_dir") or training_cfg.get("experiment_dir")
+    experiment_dir = experiment_dir_override or evaluation_cfg.get("experiment_dir") or training_cfg.get("experiment_dir")
     if experiment_dir:
-        experiment_dir = Path(experiment_dir)
+        experiment_dir = resolve_project_path(experiment_dir, project_root)
     else:
         experiment_dir = find_latest_experiment_dir(project_root)
 
     checkpoint_path = evaluation_cfg.get("checkpoint_path") or training_cfg.get("checkpoint_path")
     if checkpoint_path:
-        checkpoint_path = Path(checkpoint_path)
+        checkpoint_path = resolve_project_path(checkpoint_path, project_root)
     elif experiment_dir is not None:
         ckpt_dir = experiment_dir / "checkpoints"
-        ckpts = sorted(ckpt_dir.glob("*.pth"), key=lambda p: p.stat().st_mtime) if ckpt_dir.exists() else []
-        checkpoint_path = ckpts[-1] if ckpts else None
+        checkpoint_path = ckpt_dir / "checkpoint_best_total.pth"
+        if not checkpoint_path.is_file():
+            raise FileNotFoundError(f"Best checkpoint not found; specify --checkpoint-path: {checkpoint_path}")
     else:
         checkpoint_path = None
 
     results_dir = evaluation_cfg.get("results_dir")
     if results_dir:
-        results_dir = Path(results_dir)
+        results_dir = resolve_project_path(results_dir, project_root)
     elif experiment_dir is not None:
         results_dir = experiment_dir / "results"
     else:
@@ -146,7 +172,9 @@ def detections_to_raw_list(detections: Any):
         else:
             item["confidence"] = None
         if class_id is not None and idx < len(class_id):
-            item["class_id"] = int(class_id[idx])
+            # RF-DETR returns zero-based class indices, while COCO category_id
+            # values in this project are one-based.
+            item["class_id"] = int(class_id[idx]) + 1
         else:
             item["class_id"] = None
         raw.append(item)
@@ -200,87 +228,62 @@ def extract_predictions(predictions_by_image):
                     "image_id": image_id,
                     "bbox": [float(v) for v in bbox.tolist()],
                     "confidence": float(confidence[idx]) if confidence is not None and idx < len(confidence) else 0.0,
-                    "class_id": int(class_id[idx]) if class_id is not None and idx < len(class_id) else None,
+                    # Convert the model's zero-based class index to the
+                    # one-based COCO category_id used by the annotations.
+                    "class_id": int(class_id[idx]) + 1 if class_id is not None and idx < len(class_id) else None,
                 }
             )
     return flat
 
 
 def evaluate_predictions(coco: COCO, predictions_by_image):
-    gt_by_image = build_ground_truth(coco)
     flat_predictions = extract_predictions(predictions_by_image)
-
-    total_gt = sum(len(v) for v in gt_by_image.values())
-    metrics = {}
-
-    for thr in IOU_THRESHOLDS:
-        preds = sorted(flat_predictions, key=lambda x: x["confidence"], reverse=True)
-        matched = set()
-        tp = 0
-        fp = 0
-        for pred_idx, pred in enumerate(preds):
-            candidates = gt_by_image.get(pred["image_id"], [])
-            best_iou = 0.0
-            best_gt_idx = None
-            for gt_idx, gt in enumerate(candidates):
-                key = (pred["image_id"], gt_idx)
-                if key in matched:
-                    continue
-                if pred["class_id"] is not None and gt["class_id"] != pred["class_id"]:
-                    continue
-                iou = xyxy_iou(pred["bbox"], gt["bbox"])
-                if iou > best_iou:
-                    best_iou = iou
-                    best_gt_idx = gt_idx
-            if best_iou >= thr and best_gt_idx is not None:
-                matched.add((pred["image_id"], best_gt_idx))
-                tp += 1
-            else:
-                fp += 1
-
-        fn = max(0, total_gt - tp)
-        precision = tp / (tp + fp) if (tp + fp) else 0.0
-        recall = tp / (tp + fn) if (tp + fn) else 0.0
-        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
-        ap = precision * recall
-        metrics[thr] = {
-            "ap": ap,
-            "precision": precision,
-            "recall": recall,
-            "f1": f1,
-        }
-
-    mAP50 = metrics[0.5]["ap"]
-    mAP5095 = sum(v["ap"] for v in metrics.values()) / len(metrics) if metrics else 0.0
-    precision = metrics[0.5]["precision"]
-    recall = metrics[0.5]["recall"]
-    f1 = metrics[0.5]["f1"]
-
-    return {
-        "mAP50": mAP50,
-        "mAP50-95": mAP5095,
-        "precision": precision,
-        "recall": recall,
-        "f1": f1,
-    }
+    return coco_metrics(coco, to_coco_records(flat_predictions))["metrics"]
 
 
-def main() -> None:
-    config = load_config(CONFIG_PATH)
+def to_coco_records(predictions):
+    records = []
+    for pred in predictions:
+        x1, y1, x2, y2 = pred["bbox"]
+        records.append({"image_id": pred["image_id"], "category_id": pred["class_id"],
+                        "bbox": [x1, y1, x2 - x1, y2 - y1], "score": pred["confidence"]})
+    return records
+
+
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(description="Evaluate an RF-DETR pollen detector.")
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH)
+    parser.add_argument("--experiment-dir", type=Path, default=None)
+    parser.add_argument(
+        "--checkpoint-path",
+        type=Path,
+        default=None,
+        help="Explicit model checkpoint to evaluate; overrides automatic selection.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv=None) -> None:
+    args = parse_args(argv)
+    config_path = args.config.expanduser().resolve()
+    config = load_config(config_path)
 
     model_cfg = config["model"]
     dataset_cfg = config["dataset"]
-    project_root = Path(__file__).resolve().parent.parent
-    experiment_dir, checkpoint_path, results_dir = resolve_runtime_paths(config, project_root)
+    experiment_dir, checkpoint_path, results_dir = resolve_runtime_paths(
+        config, PROJECT_ROOT, args.experiment_dir
+    )
+    if args.checkpoint_path is not None:
+        checkpoint_path = resolve_project_path(args.checkpoint_path, PROJECT_ROOT)
 
     model_type = str(model_cfg["type"]).lower()
     if model_type not in SUPPORTED_MODEL_TYPES:
         raise ValueError(f"Unsupported model type: {model_type}")
 
-    dataset_path = Path(dataset_cfg["path"])
+    dataset_path = get_required_path(config, "dataset", "path", PROJECT_ROOT)
     coco, val_images = load_validation_images(dataset_path)
 
-    print(f"Config loaded: {CONFIG_PATH}")
+    print(f"Config loaded: {config_path}")
     print(f"Dataset path: {dataset_path}")
     print(f"Validation images: {len(val_images)}")
     print(f"Model type: {model_type}")
@@ -289,17 +292,48 @@ def main() -> None:
     if checkpoint_path is not None:
         print(f"Checkpoint path: {checkpoint_path}")
 
-    model = build_model(model_type)
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise RuntimeError(
+            "Pillow is not installed. Install project dependencies before evaluation."
+        ) from exc
+
+    if checkpoint_path is None:
+        raise FileNotFoundError(
+            "No trained checkpoint was found; refusing to evaluate an untrained model."
+        )
+    requested_resolution = config.get("training", {}).get("resolution")
+    model = build_model(model_type, checkpoint_path, resolution=requested_resolution)
+    actual_resolution = model.model_config.resolution
+    if requested_resolution is not None and actual_resolution != requested_resolution:
+        raise ValueError("Loaded model resolution does not match the experiment configuration")
+    print(f"Inference resolution: {actual_resolution}")
+    categories = sorted(coco.dataset["categories"], key=lambda c: c["id"])
+    if [c["id"] for c in categories] != list(range(1, len(categories) + 1)):
+        raise ValueError("Evaluation requires contiguous COCO category IDs starting at 1")
+    if list(model.class_names) != [c["name"] for c in categories]:
+        raise ValueError("Checkpoint class names/order do not match evaluation dataset")
     prediction_records = []
     predictions_by_image = {}
+    background_candidates = 0
 
     for img_info in val_images:
         image_id = img_info["id"]
         file_name = img_info["file_name"]
         image_path = resolve_validation_image_path(dataset_path, file_name)
 
-        image = Image.open(image_path).convert("RGB")
-        detections = model.predict(image)
+        with Image.open(image_path) as source_image:
+            image = source_image.convert("RGB")
+        # Keep all model candidates for AP; confidence filtering is only for P/R/F1.
+        detections = model.predict(image, threshold=0.0)
+        # RF-DETR's head has N+1 slots. At zero threshold predict() can expose
+        # the unused final background slot; it is not a dataset category.
+        labels = detections.class_id
+        if ((labels < 0) | (labels > len(categories))).any():
+            raise ValueError("Prediction label lies outside the checkpoint detection head")
+        background_candidates += int((labels == len(categories)).sum())
+        detections = detections[labels < len(categories)]
         predictions_by_image[image_id] = detections
 
         record = {
@@ -314,22 +348,29 @@ def main() -> None:
             f"num_detections={len(detections)}"
         )
 
-    if prediction_records:
-        first_record = prediction_records[0]
-        print("First prediction record preview:")
-        print(json.dumps(first_record, ensure_ascii=False, indent=2))
-
     results_dir.mkdir(parents=True, exist_ok=True)
     preview_path = results_dir / "predictions_raw.json"
     with open(preview_path, "w", encoding="utf-8") as f:
         json.dump(prediction_records, f, ensure_ascii=False, indent=2)
 
-    metrics = evaluate_predictions(coco, predictions_by_image)
+    coco_records = to_coco_records(extract_predictions(predictions_by_image))
+    (results_dir / "predictions_coco.json").write_text(
+        json.dumps(coco_records, ensure_ascii=False, allow_nan=False), encoding="utf-8")
+    eval_config = config.get("evaluation", {})
+    evaluation = coco_metrics(coco, coco_records,
+                              confidence=float(eval_config.get("confidence_threshold", 0.5)),
+                              iou=float(eval_config.get("iou_threshold", 0.5)))
+    metrics = evaluation["metrics"]
     evaluation_report = {
         "model": model_type,
+        "inference_resolution": actual_resolution,
         "dataset": str(dataset_path),
         "split": "valid",
         "metrics": metrics,
+        "per_class": evaluation["per_class"],
+        "protocol": {**evaluation["protocol"], "prediction_score_threshold": 0.0,
+                     "label_mapping": "model slots 0..N-1 -> COCO IDs 1..N; unused slot N excluded",
+                     "excluded_background_candidates": background_candidates},
         "timestamp": datetime.now().isoformat(),
     }
     if experiment_dir is not None:

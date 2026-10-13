@@ -1,15 +1,16 @@
 # Deep Learning
-torch
-torchvision
+# Install CUDA-enabled torch/torchvision first. On Windows run:
+# powershell -ExecutionPolicy Bypass -File scripts/setup_windows_cuda.ps1
 
-#RE-DETR
-rfdetr
+# RF-DETR training stack (includes Lightning and detection metrics)
+rfdetr[train]
 
 # Data Processing
 pandas
 numpy
 pillow
 tqdm
+pyyaml
 
 # Object Detection Dataset
 pycocotools

@@ -1,0 +1,1783 @@
+{
+  "created_at": "2026-10-12T10:57:26.718356",
+  "source_root": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\数据",
+  "canonical_annotation": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\数据\\coco - 副本\\dataset.json",
+  "annotation_sha256": "308dec35b0214bf4100a8e83c734be5ba2f9e266f4a7164a35d6fd84821dbf1b",
+  "source_images": 159,
+  "selected_images": 107,
+  "annotations": 787,
+  "categories": [
+    {
+      "id": 0,
+      "name": "夹竹桃",
+      "supercategory": "夹竹桃"
+    },
+    {
+      "id": 1,
+      "name": "白玉兰",
+      "supercategory": "白玉兰"
+    },
+    {
+      "id": 2,
+      "name": "山玉兰",
+      "supercategory": "山玉兰"
+    },
+    {
+      "id": 3,
+      "name": "楝",
+      "supercategory": "楝"
+    },
+    {
+      "id": 4,
+      "name": "樟",
+      "supercategory": "樟"
+    },
+    {
+      "id": 5,
+      "name": "洋紫荆",
+      "supercategory": "洋紫荆"
+    },
+    {
+      "id": 6,
+      "name": "楠",
+      "supercategory": "楠"
+    },
+    {
+      "id": 7,
+      "name": "山合欢",
+      "supercategory": "山合欢"
+    },
+    {
+      "id": 8,
+      "name": "黑松",
+      "supercategory": "黑松"
+    },
+    {
+      "id": 9,
+      "name": "构",
+      "supercategory": "构"
+    },
+    {
+      "id": 10,
+      "name": "银杏",
+      "supercategory": "银杏"
+    },
+    {
+      "id": 11,
+      "name": "细叶合欢",
+      "supercategory": "细叶合欢"
+    },
+    {
+      "id": 12,
+      "name": "广玉兰",
+      "supercategory": "广玉兰"
+    },
+    {
+      "id": 13,
+      "name": "土紫荆",
+      "supercategory": "土紫荆"
+    },
+    {
+      "id": 14,
+      "name": "蓝花楹",
+      "supercategory": "蓝花楹"
+    }
+  ],
+  "excluded_images_not_in_coco": [
+    "2.3-001大圆楝小圆樟.jpg",
+    "2.3-004大圆楝小圆樟.jpg",
+    "2.3-006楝+纺锤（玉兰）.jpg",
+    "2.3-007大圆楝小圆樟纺锤为玉兰.jpg",
+    "2.3-008大圆楝小圆樟.jpg",
+    "2.3-009都是楝.jpg",
+    "2.3-012大圆楝小圆樟.jpg",
+    "2.3-018玉兰+楝.jpg",
+    "2.3-019大圆楝+纺锤玉兰.jpg",
+    "2.3-024大圆楝，小圆樟+纺锤玉兰.jpg",
+    "20260518155854610圆球是香樟.jpg",
+    "20260518155932953圆球为樟，右上船型为山玉兰.jpg",
+    "20260518155956980右圆为樟.jpg",
+    "20260518160005314中部红圆为樟.jpg",
+    "20260518160036289黑松.jpg",
+    "20260518160454227球形为樟.jpg",
+    "20260518160600592左下方长方形的两个为羊蹄甲.jpg",
+    "20260518160635005右上圆为香樟.jpg",
+    "20260518161149253左中红圆为樟.jpg",
+    "20260518161204838左下樟.jpg",
+    "20260518161736792中间为洋紫荆.jpg",
+    "20260518162911984山玉兰.jpg",
+    "20260518163116718苦楝.jpg",
+    "20260531135806473左下楝.jpg",
+    "20260531135854848左中楝.jpg",
+    "20260531140144141红色樟.jpg",
+    "20260531140152623左上楝.jpg",
+    "20260531140218670左中樟.jpg",
+    "20260531140245211右边2个都是樟.jpg",
+    "20260531140249359中间广州樱.jpg",
+    "20260531140435248四个球体都是朴.jpg",
+    "20260531140450337右2楝.jpg",
+    "20260531140519612中间红色的是桑.jpg",
+    "20260531140556267中间广州樱.jpg",
+    "20260531141723194左圆为樟.jpg",
+    "20260604213013821楝.jpg",
+    "20260604213134564中间和右上红色的是樟.jpg",
+    "20260604213416479左红樟.jpg",
+    "20260604213540067楝.jpg",
+    "20260604213609512红圆为樟，下部为马尾松.jpg",
+    "20260604213647179右红樟.jpg",
+    "20260604213737230马尾松.jpg",
+    "20260604213749500羊蹄甲右2.jpg",
+    "20260604213839334楝.jpg",
+    "20260604213929408红圆樟.jpg",
+    "20260604214210942右中马尾松.jpg",
+    "20260604214248311楝.jpg",
+    "20260604214258732楝.jpg",
+    "3.2-001大圆楝.jpg",
+    "3.2-002大圆楝小圆樟.jpg",
+    "3.2-007大圆楝小圆樟.jpg",
+    "3.2-008大圆楝小圆樟.jpg"
+  ],
+  "labelme_files": 106,
+  "labelme_embedded_images": 0,
+  "labelme_missing_images": [
+    {
+      "annotation": "1.2-001楝.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-001楝.jpg"
+    },
+    {
+      "annotation": "1.2-002大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-002大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.2-004大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-004大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.2-005大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-005大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.2-006大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-006大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.2-007小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-007小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.2-008右上小叶榕.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.2-008右上小叶榕.jpg"
+    },
+    {
+      "annotation": "1.3-004上为广州樱.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-004上为广州樱.jpg"
+    },
+    {
+      "annotation": "1.3-006小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-006小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.3-007大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-007大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.3-011中间四个圆为楝，右下为广州樱.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-011中间四个圆为楝，右下为广州樱.jpg"
+    },
+    {
+      "annotation": "1.3-013中间黄色纺锤状的为玉兰，大圆为楝，小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-013中间黄色纺锤状的为玉兰，大圆为楝，小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.3-018大圆为楝小圆为樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-018大圆为楝小圆为樟.jpg"
+    },
+    {
+      "annotation": "1.3-020全是樟.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\1.3-020全是樟.jpg"
+    },
+    {
+      "annotation": "2.2-002都是楝.json",
+      "image_path": "..\\程森第二批\\这个文件中的图片尺度不一样，不知道是否需要处理\\2.2-002都是楝.jpg"
+    },
+    {
+      "annotation": "2.2-006大圆楝右长圆小微悬铃木.json",
+      "image_path": "2.2-006大圆楝右长圆小微悬铃木.jpg"
+    },
+    {
+      "annotation": "20260604215024518樟.json",
+      "image_path": "..\\程森第二批\\20260604215024518樟.jpg"
+    },
+    {
+      "annotation": "20260604215106648樟.json",
+      "image_path": "..\\程森第二批\\20260604215106648樟.jpg"
+    },
+    {
+      "annotation": "20260604215603043中间两个樟.json",
+      "image_path": "..\\程森第二批\\20260604215603043中间两个樟.jpg"
+    },
+    {
+      "annotation": "20260604215727593中间红色樟.json",
+      "image_path": "..\\程森第二批\\20260604215727593中间红色樟.jpg"
+    },
+    {
+      "annotation": "20260604215815803樟.json",
+      "image_path": "..\\程森第二批\\20260604215815803樟.jpg"
+    },
+    {
+      "annotation": "20260604215824995左下碧桃.json",
+      "image_path": "..\\程森第二批\\20260604215824995左下碧桃.jpg"
+    },
+    {
+      "annotation": "20260604215839814中间碧桃.json",
+      "image_path": "..\\程森第二批\\20260604215839814中间碧桃.jpg"
+    },
+    {
+      "annotation": "20260604220025828右红樟.json",
+      "image_path": "..\\程森第二批\\20260604220025828右红樟.jpg"
+    },
+    {
+      "annotation": "20260604220100677楝.json",
+      "image_path": "..\\程森第二批\\20260604220100677楝.jpg"
+    },
+    {
+      "annotation": "20260625222356931右下碧桃.json",
+      "image_path": "..\\程森第二批\\20260625222356931右下碧桃.jpg"
+    },
+    {
+      "annotation": "20260625222406071右红圆樟.json",
+      "image_path": "..\\程森第二批\\20260625222406071右红圆樟.jpg"
+    },
+    {
+      "annotation": "20260625222439131红圆樟.json",
+      "image_path": "..\\程森第二批\\20260625222439131红圆樟.jpg"
+    },
+    {
+      "annotation": "20260625222542457中下鹅掌楸.json",
+      "image_path": "..\\程森第二批\\20260625222542457中下鹅掌楸.jpg"
+    },
+    {
+      "annotation": "20260625223003054右圆楝.json",
+      "image_path": "..\\程森第二批\\20260625223003054右圆楝.jpg"
+    },
+    {
+      "annotation": "20260625223029058中圆楝.json",
+      "image_path": "..\\程森第二批\\20260625223029058中圆楝.jpg"
+    },
+    {
+      "annotation": "20260625223049920下圆楝.json",
+      "image_path": "..\\程森第二批\\20260625223049920下圆楝.jpg"
+    },
+    {
+      "annotation": "20260625223121236红圆樟.json",
+      "image_path": "..\\程森第二批\\20260625223121236红圆樟.jpg"
+    },
+    {
+      "annotation": "20260625223343927下圆樟.json",
+      "image_path": "..\\程森第二批\\20260625223343927下圆樟.jpg"
+    },
+    {
+      "annotation": "20260625223350861上二马尾松.json",
+      "image_path": "..\\程森第二批\\20260625223350861上二马尾松.jpg"
+    },
+    {
+      "annotation": "20260625223750583楝.json",
+      "image_path": "..\\程森第二批\\20260625223750583楝.jpg"
+    },
+    {
+      "annotation": "北站西二路（银杏左边香樟，右边三个蓝花楹.json",
+      "image_path": "..\\程森第二批\\北站西二路（银杏左边香樟，右边三个蓝花楹.jpg"
+    },
+    {
+      "annotation": "小圆樟大圆楝.json",
+      "image_path": "..\\程森第二批\\小圆樟大圆楝.tif"
+    },
+    {
+      "annotation": "朴树群体.json",
+      "image_path": "..\\程森第二批\\朴树群体.jpg"
+    },
+    {
+      "annotation": "狮子山（樟.json",
+      "image_path": "..\\程森第二批\\狮子山（樟.jpg"
+    },
+    {
+      "annotation": "驷马桥（树红圆为樟.json",
+      "image_path": "..\\程森第二批\\驷马桥（树红圆为樟.jpg"
+    }
+  ],
+  "files": [
+    {
+      "path": "2-3块组成的夹竹桃20260526131927875.jpg",
+      "sha256": "1bdf688a35b1ef6ebb86816b1797109cb36a84852acdbec9f8f4cb26a2e2ace0",
+      "bytes": 2582729
+    },
+    {
+      "path": "2.3-001大圆楝小圆樟.jpg",
+      "sha256": "6d56b40170578ea54c8addb9cb106feddc8eb17f0c10e8f697c5b1fcab8ab530",
+      "bytes": 1367032
+    },
+    {
+      "path": "2.3-004大圆楝小圆樟.jpg",
+      "sha256": "0d3d517ad05fb9f33062be1bf19f5c63e0a5953abce9bb323f8a393fd5280792",
+      "bytes": 1296082
+    },
+    {
+      "path": "2.3-006楝+纺锤（玉兰）.jpg",
+      "sha256": "5087ff8dd60855e2c449f6889be664a055960aca605a16d876ac41f016895dc2",
+      "bytes": 1286565
+    },
+    {
+      "path": "2.3-007大圆楝小圆樟纺锤为玉兰.jpg",
+      "sha256": "6a58b3d4cbbd1db7c825bffd72cc56fd7ea68b286de9f7c817fcdfb9a532ad26",
+      "bytes": 1256987
+    },
+    {
+      "path": "2.3-008大圆楝小圆樟.jpg",
+      "sha256": "1fa57c8bdf5d89a93b9c56d27221a845a028b89a4bb359821eb79650a22ae2eb",
+      "bytes": 1262730
+    },
+    {
+      "path": "2.3-009都是楝.jpg",
+      "sha256": "b7d28cef906df3ad82f83fb4a824f5a4cb69a6922952bdd50a0c676757a83a4f",
+      "bytes": 1285756
+    },
+    {
+      "path": "2.3-012大圆楝小圆樟.jpg",
+      "sha256": "113c54222befc71cf6d53f9ce70d40c2f606b4e694efe6c20e6dd1cbea7c4cfa",
+      "bytes": 1304449
+    },
+    {
+      "path": "2.3-018玉兰+楝.jpg",
+      "sha256": "eeac9ebb28076bc351c413e43fdfc6e6b6f3908b04e96aa0b639b7ac03a03359",
+      "bytes": 1410334
+    },
+    {
+      "path": "2.3-019大圆楝+纺锤玉兰.jpg",
+      "sha256": "4048d645058fb88c801245fb98f2be9a7ed4dcd2f19e719b93ac72ab054a49fb",
+      "bytes": 1388587
+    },
+    {
+      "path": "2.3-024大圆楝，小圆樟+纺锤玉兰.jpg",
+      "sha256": "3804706cd464da96546635d1e4dd1caf5a36f883746e5a9973af44702c33e3b8",
+      "bytes": 1321499
+    },
+    {
+      "path": "20260518155854610圆球是香樟.jpg",
+      "sha256": "147a66c3767e3c4aa583a3c45ccada0d6f764aa118ec7c602b3d596f491c3d07",
+      "bytes": 2496139
+    },
+    {
+      "path": "20260518155932953圆球为樟，右上船型为山玉兰.jpg",
+      "sha256": "73a2fbe77648aee0a78c86ca82f04a210c7fbdbbd8df55b01d0c54d359e1f9db",
+      "bytes": 2607323
+    },
+    {
+      "path": "20260518155956980右圆为樟.jpg",
+      "sha256": "011063259976a88db07adf7d6ec2ec4b1d01ef9901d6bc28d700487959eac7c3",
+      "bytes": 2483547
+    },
+    {
+      "path": "20260518160005314中部红圆为樟.jpg",
+      "sha256": "a17c21a5f85eea76120bb82b2ef0ef435c993a3671fbda80711244e342123288",
+      "bytes": 2740536
+    },
+    {
+      "path": "20260518160036289黑松.jpg",
+      "sha256": "bd6d7ec6a5bdc85db86a78542819c4fe479b50b871c20b38cc3305f20161fbfb",
+      "bytes": 2526066
+    },
+    {
+      "path": "20260518160454227球形为樟.jpg",
+      "sha256": "101d6cc34a4df6ad7fed78302076896d4a3e821717128cccd61ef1b0e4f7def7",
+      "bytes": 2623025
+    },
+    {
+      "path": "20260518160600592左下方长方形的两个为羊蹄甲.jpg",
+      "sha256": "468cff0a823002be52fea07f9940781169c07817d865a264d05c10eda149eb35",
+      "bytes": 2497088
+    },
+    {
+      "path": "20260518160635005右上圆为香樟.jpg",
+      "sha256": "9fa7f53770969eb47da8ab4c74231c72adcad08085599889e7b57464a899e38e",
+      "bytes": 2593050
+    },
+    {
+      "path": "20260518161149253左中红圆为樟.jpg",
+      "sha256": "83a7faaa95fd32faf9ba513f91504340f13712c2635dcdfcfc2b573e967e5eb8",
+      "bytes": 2530552
+    },
+    {
+      "path": "20260518161204838左下樟.jpg",
+      "sha256": "27f9dc87aa55e80b3fd9fc2054b1c62ecdfa3eae9dd5ac80008953f017a31b5a",
+      "bytes": 2541664
+    },
+    {
+      "path": "20260518161736792中间为洋紫荆.jpg",
+      "sha256": "cbe902049beeb9c6f26f5beee69f3a973dcb2ce824e7a0ab828d85945cfc0a6d",
+      "bytes": 2405782
+    },
+    {
+      "path": "20260518162911984山玉兰.jpg",
+      "sha256": "ec3350d620d6e1f5a8d430e57336973e70a1d500831884e7b7fd153351149584",
+      "bytes": 2557416
+    },
+    {
+      "path": "20260518163116718苦楝.jpg",
+      "sha256": "9ddd3a7ba0090f27cde50cc0f8b7b600c24b73766213aed6885decdf0f23e9e1",
+      "bytes": 2619286
+    },
+    {
+      "path": "20260531135806473左下楝.jpg",
+      "sha256": "2c3fb00341cea3e08c526655c69e4cdb77d9b83ecbe659a1c5bbc9b895546215",
+      "bytes": 2502680
+    },
+    {
+      "path": "20260531135854848左中楝.jpg",
+      "sha256": "6a0b84d61be1cf079a30124c14ed2c412e6f5843bb2db5ec8ca78417dc953e6c",
+      "bytes": 2671171
+    },
+    {
+      "path": "20260531140144141红色樟.jpg",
+      "sha256": "358ceca5ea373d6d5c1c4bbfd4170abc05340d67b733aa9c33619cffaafb35e5",
+      "bytes": 2419364
+    },
+    {
+      "path": "20260531140152623左上楝.jpg",
+      "sha256": "3602a62feed4789053cb1be6f58c9afd6cf57775bd4f6bc8839422c8d77e0097",
+      "bytes": 2615010
+    },
+    {
+      "path": "20260531140218670左中樟.jpg",
+      "sha256": "0b12edd3d07a971a6d7bb6f76044306f9ce8ddf328bab6d7f69b7e61f5ce5953",
+      "bytes": 2554246
+    },
+    {
+      "path": "20260531140245211右边2个都是樟.jpg",
+      "sha256": "d64a65197bbaae04ecfd459885ba47cbb002667b146ed58a128f792119fc5515",
+      "bytes": 2348400
+    },
+    {
+      "path": "20260531140249359中间广州樱.jpg",
+      "sha256": "999f55612e47275888c7e132a0917e2863018a5b2144e6cd4ea49f40b3141f2d",
+      "bytes": 2373813
+    },
+    {
+      "path": "20260531140435248四个球体都是朴.jpg",
+      "sha256": "d2e999873e78d39ff4e8858bf6dc1b231d677deaec36120fd2430c5ed9cc4fee",
+      "bytes": 2498722
+    },
+    {
+      "path": "20260531140450337右2楝.jpg",
+      "sha256": "f06c98982ecbe243604cfbffdb63bf10350f33507f4241a59676fa4a6aefb345",
+      "bytes": 2520110
+    },
+    {
+      "path": "20260531140519612中间红色的是桑.jpg",
+      "sha256": "f76b3eed85d4f3cb5fccc1357982f4ce0ae9c4bbe852a1e2a455096052e5fe49",
+      "bytes": 2282627
+    },
+    {
+      "path": "20260531140556267中间广州樱.jpg",
+      "sha256": "e8a59f2de60feb9e24b54f97e40609333bfc19942b486a8a2f42cc27c3afeb41",
+      "bytes": 2302984
+    },
+    {
+      "path": "20260531141723194左圆为樟.jpg",
+      "sha256": "5bbb2849970783bbe2a94665ef9323f6cebb0fc42c36bf4b51793ae32b28a48f",
+      "bytes": 2501131
+    },
+    {
+      "path": "20260604213013821楝.jpg",
+      "sha256": "6fc594f8c206f68743308441e2663a284bff2992f2fad6871ba7f6cc6ee5ad8b",
+      "bytes": 2479131
+    },
+    {
+      "path": "20260604213134564中间和右上红色的是樟.jpg",
+      "sha256": "489d5859ca07f7ac74d95fe53ec9723f712fad6064119d395d3a44f1ea956dce",
+      "bytes": 2381791
+    },
+    {
+      "path": "20260604213416479左红樟.jpg",
+      "sha256": "e22b38c66d3029933325fad77b88ab6601f6d134eb81eaf87544896582431a9d",
+      "bytes": 2542822
+    },
+    {
+      "path": "20260604213540067楝.jpg",
+      "sha256": "a4cb75db7b0190d2f0b3a0d86f1f0a62f62fd27d9147d963b438e42b4f33a318",
+      "bytes": 2360416
+    },
+    {
+      "path": "20260604213609512红圆为樟，下部为马尾松.jpg",
+      "sha256": "297c5fa3565f79565bbe72f4362575ac0088eb7098300660cd38fc55401ce828",
+      "bytes": 2528211
+    },
+    {
+      "path": "20260604213647179右红樟.jpg",
+      "sha256": "677e4a0807c8562472cb425ce1c94cba020e838121ee6c27d513a349484f22c4",
+      "bytes": 2318436
+    },
+    {
+      "path": "20260604213737230马尾松.jpg",
+      "sha256": "1b41fd3e52505519c49c983039c6e7a6c3df094eb208c792663099fd516f09f2",
+      "bytes": 2368582
+    },
+    {
+      "path": "20260604213749500羊蹄甲右2.jpg",
+      "sha256": "c94210860cd743b7f03e28c89eb13602c3a9599f34ed10bffe67a7f439dea5bd",
+      "bytes": 2367552
+    },
+    {
+      "path": "20260604213839334楝.jpg",
+      "sha256": "331b4e0f15343573fcb22fcd080a50ac6370228a2ee0b55f7a8e2eaba252727a",
+      "bytes": 2410282
+    },
+    {
+      "path": "20260604213929408红圆樟.jpg",
+      "sha256": "5d0879be31520314c7c55c9302bb9cbf8b943054e74a8f8217e6d8d5d7666d9f",
+      "bytes": 2390312
+    },
+    {
+      "path": "20260604214210942右中马尾松.jpg",
+      "sha256": "bad55fd51ecd411a44ad4eaa4a27ea1bf867f1623dbff658ce27d0884b4dfcde",
+      "bytes": 2453588
+    },
+    {
+      "path": "20260604214248311楝.jpg",
+      "sha256": "d4d0fe2a1571a0c87570ef04f43bd410d31fca38dee8d84c1b7a7cb3ea8b9f23",
+      "bytes": 2358874
+    },
+    {
+      "path": "20260604214258732楝.jpg",
+      "sha256": "5e5b09c3b2c07387d4ed2a9db8d095c5090ab08b3bf57553c385442b70ff780f",
+      "bytes": 2405019
+    },
+    {
+      "path": "3.2-001大圆楝.jpg",
+      "sha256": "cca56f4254c16b1fa5eac99bc8f19b032e6db986404ce4242657bdddbd613f91",
+      "bytes": 1163289
+    },
+    {
+      "path": "3.2-002大圆楝小圆樟.jpg",
+      "sha256": "1852a729b6c421500f3b10d29b78f90b296da2e8935c28442d8aa0a4420b6f9d",
+      "bytes": 1221124
+    },
+    {
+      "path": "3.2-007大圆楝小圆樟.jpg",
+      "sha256": "8f26f61fefc0ccdff57b732ff4b20263face2b2b3a140e3aeb336b40a0f83183",
+      "bytes": 1207606
+    },
+    {
+      "path": "3.2-008大圆楝小圆樟.jpg",
+      "sha256": "00367493bddd4c3d7a72c6954cfbdee4181afcc76a6118ffc5161f7f517cf0eb",
+      "bytes": 1305172
+    },
+    {
+      "path": "coco - 副本\\1.2-001楝.json",
+      "sha256": "f3c66ba47110b440c78dc700283415875b79751f1fd76d97cb24321b7e5b3c00",
+      "bytes": 11500
+    },
+    {
+      "path": "coco - 副本\\1.2-002大圆为楝小圆为樟.json",
+      "sha256": "492298ff1dfbd174625731a0760be6c93696597ca5c8fb7ee82ea18c831979f3",
+      "bytes": 2551
+    },
+    {
+      "path": "coco - 副本\\1.2-004大圆为楝小圆为樟.json",
+      "sha256": "9afff8a5413e0a63766b1bbf474d2d813ac1cf542ced0d06abd4d3388b53d700",
+      "bytes": 6558
+    },
+    {
+      "path": "coco - 副本\\1.2-005大圆为楝小圆为樟.json",
+      "sha256": "57501d658b97961eff4fe748353759b7efe320c4f867ab1263f669e68cce515b",
+      "bytes": 14912
+    },
+    {
+      "path": "coco - 副本\\1.2-006大圆为楝小圆为樟.json",
+      "sha256": "95011f20b05076ec3b8d8daa876035ce05f318df15a67408baad21004e6b331c",
+      "bytes": 14964
+    },
+    {
+      "path": "coco - 副本\\1.2-007小圆为樟.json",
+      "sha256": "fa2482c51d71d1ccaf5951d8fecfd2d2c599fa3436d78468b1c9c780079c2a35",
+      "bytes": 7397
+    },
+    {
+      "path": "coco - 副本\\1.2-008右上小叶榕.json",
+      "sha256": "0b1046cd3f557888fb35bc3916613c75e9b8867fda065490741b07562eb47268",
+      "bytes": 10642
+    },
+    {
+      "path": "coco - 副本\\1.3-004上为广州樱.json",
+      "sha256": "33725e4777755ed593e483ca218f96508fda8bcb65591badb937d42c540970a8",
+      "bytes": 2026
+    },
+    {
+      "path": "coco - 副本\\1.3-006小圆为樟.json",
+      "sha256": "06ad2bcdbd6a346d049b61720c5aae8cdb816eb2bda4fff3ea94c14d682f2e43",
+      "bytes": 21274
+    },
+    {
+      "path": "coco - 副本\\1.3-007大圆为楝小圆为樟.json",
+      "sha256": "0b4a4e5a3e9aaa94dc7c59cab01236fcd494af7b8218418fbd8c43eb4f97c64d",
+      "bytes": 46384
+    },
+    {
+      "path": "coco - 副本\\1.3-011中间四个圆为楝，右下为广州樱.json",
+      "sha256": "8fe726e6a65fe7f5cadb3af985ab5780479731b6d53e71bcc5edfae462554d66",
+      "bytes": 6709
+    },
+    {
+      "path": "coco - 副本\\1.3-013中间黄色纺锤状的为玉兰，大圆为楝，小圆为樟.json",
+      "sha256": "31ddda1a11db25b3e98df95f3f62b28f1a826b76c68e77fdeff6f1ca18d744fb",
+      "bytes": 26746
+    },
+    {
+      "path": "coco - 副本\\1.3-018大圆为楝小圆为樟.json",
+      "sha256": "76ca4fc097687a5214edd336dd6409fc67189c168968d80bbc7b415f931eb0ec",
+      "bytes": 7290
+    },
+    {
+      "path": "coco - 副本\\1.3-020全是樟.json",
+      "sha256": "be860cc6ce98b97d8ba7511411252d852dedf342e91ba81e0ccf5a7352c31738",
+      "bytes": 212843
+    },
+    {
+      "path": "coco - 副本\\2.2-002都是楝.json",
+      "sha256": "9cbc771c5e62989a3515b42e2a0857cbeab563cc92ddd40532b5a076dc2ca96e",
+      "bytes": 8210
+    },
+    {
+      "path": "coco - 副本\\2.2-006大圆楝右长圆小微悬铃木.json",
+      "sha256": "21a2946cee5bce941845ed32a2fe0a89969a8f496c99ba8551afe0b466a7035d",
+      "bytes": 47737
+    },
+    {
+      "path": "coco - 副本\\2.3-001大圆楝小圆樟.json",
+      "sha256": "e8fc30750c80fbd4b931dfab723273155ebb4f33d7b011afa16a45dc0ba212d6",
+      "bytes": 369418
+    },
+    {
+      "path": "coco - 副本\\2.3-004大圆楝小圆樟.json",
+      "sha256": "eab917c88ded4f31220feb9bde50ddbcb2a5ba16596a20b6754813205eefe114",
+      "bytes": 129263
+    },
+    {
+      "path": "coco - 副本\\2.3-006楝+纺锤（玉兰）.json",
+      "sha256": "536c310c7effcdc0fe8799355e4ba0d33fade4fac7fa958d513e16de52f1a961",
+      "bytes": 116060
+    },
+    {
+      "path": "coco - 副本\\2.3-007大圆楝小圆樟纺锤为玉兰.json",
+      "sha256": "55c1a01e121c46bcd4fae8f1e74104198fd79bde647985fb85064143ba60b4f9",
+      "bytes": 76523
+    },
+    {
+      "path": "coco - 副本\\2.3-008大圆楝小圆樟.json",
+      "sha256": "4a2d2e3484aa4f0ccf5a9151b412a63f5e8ad95375cf91df84df1fb0d5cb93db",
+      "bytes": 149125
+    },
+    {
+      "path": "coco - 副本\\2.3-009都是楝.json",
+      "sha256": "1ce4e43dc057a9fe97e2a682f737ea0e7cf99fa41ab838784bfe902868806b83",
+      "bytes": 27489
+    },
+    {
+      "path": "coco - 副本\\2.3-012大圆楝小圆樟.json",
+      "sha256": "57fff895d9a0832564fb056f8ad0b18ca2ef48e6b5513703ac92e62fbade83fd",
+      "bytes": 158951
+    },
+    {
+      "path": "coco - 副本\\2.3-018玉兰+楝.json",
+      "sha256": "a45fc750460f9336d198b4de77a474bb672cb8ccc7c4ced549e03fce89573aaa",
+      "bytes": 130837
+    },
+    {
+      "path": "coco - 副本\\2.3-019大圆楝+纺锤玉兰.json",
+      "sha256": "0a2ea9120a2d89d1d4b5287579423d98c247cc62d8bb5df8646671aaaba14475",
+      "bytes": 81530
+    },
+    {
+      "path": "coco - 副本\\2.3-024大圆楝，小圆樟+纺锤玉兰.json",
+      "sha256": "260a42679fe6c11db5160357c3e1900d3a53957f46cb9bc3bfe0fd41bedd3f66",
+      "bytes": 212633
+    },
+    {
+      "path": "coco - 副本\\20260518155854610圆球是香樟.json",
+      "sha256": "20a38265d490ea91d2a6d1b1592bd6080cb58e6bf566200f32e496e795bf9bf8",
+      "bytes": 12129
+    },
+    {
+      "path": "coco - 副本\\20260518155932953圆球为樟，右上船型为山玉兰.json",
+      "sha256": "70a77827f0f89014207f598861ff0b57e83b767cbb04ba17d08d9cd381373572",
+      "bytes": 22485
+    },
+    {
+      "path": "coco - 副本\\20260518155956980右圆为樟.json",
+      "sha256": "b88730b16d61cf7f517dcc0b5951589d5d5fdcb7ba3adeaf38ae9b1350fd28f7",
+      "bytes": 6037
+    },
+    {
+      "path": "coco - 副本\\20260518160005314中部红圆为樟.json",
+      "sha256": "b4c32462cc0f0e383094d2a0538cf9b10fd37e0b37128c99a4bc3f3f2a3468cb",
+      "bytes": 11227
+    },
+    {
+      "path": "coco - 副本\\20260518160036289黑松.json",
+      "sha256": "5043f41fd7683c7582d36544cb2d52acb5fad534ebff26f76d398e2cca279f50",
+      "bytes": 4618
+    },
+    {
+      "path": "coco - 副本\\20260518160454227球形为樟.json",
+      "sha256": "e3210f66175af99879e8c0020e414f68206b95a9cbcb55cb821c58ce99f50576",
+      "bytes": 7416
+    },
+    {
+      "path": "coco - 副本\\20260518160600592左下方长方形的两个为羊蹄甲.json",
+      "sha256": "23c0d78a1ab6f6434b035fbce3514ce07714351c5c9b25d1babff0f0a9f264b0",
+      "bytes": 11162
+    },
+    {
+      "path": "coco - 副本\\20260518160635005右上圆为香樟.json",
+      "sha256": "005b81f72d05c51f7231e287f8421234d17cf2ddc4a4f316c14eb8ad919935d3",
+      "bytes": 4770
+    },
+    {
+      "path": "coco - 副本\\20260518161149253左中红圆为樟.json",
+      "sha256": "29812bc8a867e009d69bb04491afb2e8eb90e14f15e15b47896f102b03d693f6",
+      "bytes": 6149
+    },
+    {
+      "path": "coco - 副本\\20260518161204838左下樟.json",
+      "sha256": "97e8dbb0e14fa31ad1149c992cf7d49dfd3d9306e335e2c4cfa31a6ee1e410c2",
+      "bytes": 5857
+    },
+    {
+      "path": "coco - 副本\\20260518161736792中间为洋紫荆.json",
+      "sha256": "bada9c8eb5ec1475df9d0d6ed8f2c82b84dabd7fc692af3f31868d761077c92c",
+      "bytes": 4043
+    },
+    {
+      "path": "coco - 副本\\20260518162911984山玉兰.json",
+      "sha256": "b8cbeb0c716c750a779b319e67a044542859bec89915724c74cb241919cbc4de",
+      "bytes": 14895
+    },
+    {
+      "path": "coco - 副本\\20260518163116718苦楝.json",
+      "sha256": "2e2e49b76b67598ff08749c505dfb4ca80797c45945aaaffd5d778e9c8f944f4",
+      "bytes": 5958
+    },
+    {
+      "path": "coco - 副本\\20260531135806473左下楝.json",
+      "sha256": "dcf0403c96ac0d4aa7f71edb572867db81a4ac197cae909d528a0dcfbca3b4d6",
+      "bytes": 5051
+    },
+    {
+      "path": "coco - 副本\\20260531135854848左中楝.json",
+      "sha256": "6d4dbc3edb812ddf9a225e49ba46730f1cadac15f2593f5c7ae72785acb18bd2",
+      "bytes": 5148
+    },
+    {
+      "path": "coco - 副本\\20260531140144141红色樟.json",
+      "sha256": "6340f962a99fcbe313d5658d718e9295e7820eeb8e256e3bd86630667e8ccc72",
+      "bytes": 4500
+    },
+    {
+      "path": "coco - 副本\\20260531140152623左上楝.json",
+      "sha256": "5cff5163b4fef67b8755b80f1dafb55da26ee7f2fae47db368348086cf8030e7",
+      "bytes": 3934
+    },
+    {
+      "path": "coco - 副本\\20260531140218670左中樟.json",
+      "sha256": "8a2f65f03f5e8026d2e19e472dcceae287fb2204dae70c6e5c510a1d083b7e17",
+      "bytes": 5474
+    },
+    {
+      "path": "coco - 副本\\20260531140245211右边2个都是樟.json",
+      "sha256": "89ff268d3eb49388c0882d702b5afcf5a69a17314010950cb658f87572db8515",
+      "bytes": 10805
+    },
+    {
+      "path": "coco - 副本\\20260531140249359中间广州樱.json",
+      "sha256": "960af4eff90f047b7943745a115c1a7ce95e50d152db387a36e7596d970a8973",
+      "bytes": 5772
+    },
+    {
+      "path": "coco - 副本\\20260531140435248四个球体都是朴.json",
+      "sha256": "0269eb672095bd12544cd4f2150224af2c3ec4298a680207cd3097d457ca4c20",
+      "bytes": 19544
+    },
+    {
+      "path": "coco - 副本\\20260531140450337右2楝.json",
+      "sha256": "7fb3fe25637f3d66c0651020c1af7d92650862d02245ffb9f275c59c5b6e9dfd",
+      "bytes": 10934
+    },
+    {
+      "path": "coco - 副本\\20260531140519612中间红色的是桑.json",
+      "sha256": "8d21efddd87661b8ea5cf6efee4f3a15a6a0b49c062dd4d820349316585b2372",
+      "bytes": 4040
+    },
+    {
+      "path": "coco - 副本\\20260531140556267中间广州樱.json",
+      "sha256": "2df21d934a07701f2e53b779217c298751f389f5b87e4de941d4962f02f8c847",
+      "bytes": 6213
+    },
+    {
+      "path": "coco - 副本\\20260531141723194左圆为樟.json",
+      "sha256": "cfef22c0a743efcf6561c636bbdba99364525d036b6a130cc0bd31ed760d13b2",
+      "bytes": 5129
+    },
+    {
+      "path": "coco - 副本\\20260604213013821楝.json",
+      "sha256": "d4ddd61708baa48a4c2a653884a209167a535d3aa5a6b141e0de36b09e259d4f",
+      "bytes": 5464
+    },
+    {
+      "path": "coco - 副本\\20260604213134564中间和右上红色的是樟.json",
+      "sha256": "5a2bcdf3023da4fcd550e83aa5f6f2afb16fba518c62f61991ad7790137fea8d",
+      "bytes": 9600
+    },
+    {
+      "path": "coco - 副本\\20260604213416479左红樟.json",
+      "sha256": "09d0fc92912cdc90f1a869ea71048a7e2ecaa7b7d92e7aaa97668c49c7df0dbb",
+      "bytes": 5938
+    },
+    {
+      "path": "coco - 副本\\20260604213540067楝.json",
+      "sha256": "c2e0d9a6be79f042233eab1b272cb600b30580aed600bfc9cd2d8d9ca70ad445",
+      "bytes": 5178
+    },
+    {
+      "path": "coco - 副本\\20260604213609512红圆为樟，下部为马尾松.json",
+      "sha256": "63fc9666cae232645f90ea8e1541bcd6d9e89623ac67a6f7efc6010bcf9ea3a0",
+      "bytes": 8259
+    },
+    {
+      "path": "coco - 副本\\20260604213647179右红樟.json",
+      "sha256": "4cdff6df6ba6305144f4f56eec9485af602d19a39335e99c3f045486caceb7cb",
+      "bytes": 6565
+    },
+    {
+      "path": "coco - 副本\\20260604213737230马尾松.json",
+      "sha256": "7d17c4950adddc1794ffed29b66d74695b6e6ebd3d9cf054d325444af8f15085",
+      "bytes": 3857
+    },
+    {
+      "path": "coco - 副本\\20260604213749500羊蹄甲右2.json",
+      "sha256": "872581379210c25e11fe452a05fa44113325203f00bd786ef9b18aaac698266e",
+      "bytes": 9095
+    },
+    {
+      "path": "coco - 副本\\20260604213839334楝.json",
+      "sha256": "f8f381d8405d716c6ff2d9dc27884ce5739020c970854d3b86e311990c5dcea0",
+      "bytes": 6500
+    },
+    {
+      "path": "coco - 副本\\20260604213929408红圆樟.json",
+      "sha256": "756dca50a52ea6e624f2f4e440674e64e1f3ce070b0565ff00f52533164a347c",
+      "bytes": 6565
+    },
+    {
+      "path": "coco - 副本\\20260604214210942右中马尾松.json",
+      "sha256": "f97e014be07c85e8cde0f844902bf4cb4abaf04f4ded04ad74c31f705db36f5d",
+      "bytes": 3682
+    },
+    {
+      "path": "coco - 副本\\20260604214248311楝.json",
+      "sha256": "9b2be1cbcb4c2fa47f00ad7db865e6f41ed7473b277bad3fa1ec70c30b1aac88",
+      "bytes": 6364
+    },
+    {
+      "path": "coco - 副本\\20260604214258732楝.json",
+      "sha256": "ec45e8ab458f0ba0f12e2b4b925f22c80cc5f44ade3b7b2551f2ec777f2f86b1",
+      "bytes": 6854
+    },
+    {
+      "path": "coco - 副本\\20260604215024518樟.json",
+      "sha256": "a31573d990506db382e8b0d1140ac7db4bb1e35d87ea710ff6bc9100335e87ed",
+      "bytes": 1210
+    },
+    {
+      "path": "coco - 副本\\20260604215106648樟.json",
+      "sha256": "8e1f9e0401fc69c107bc61048a36cc7c9385839d58c798fe4124d432d0986968",
+      "bytes": 1217
+    },
+    {
+      "path": "coco - 副本\\20260604215603043中间两个樟.json",
+      "sha256": "e531dde1ef5714841faab34cce151f58e389c1eef0dfcb10feee391dd74c893a",
+      "bytes": 2065
+    },
+    {
+      "path": "coco - 副本\\20260604215727593中间红色樟.json",
+      "sha256": "22bb27fdd31680187508648bbf24248e783f77157d784d370cd7c85446526177",
+      "bytes": 1054
+    },
+    {
+      "path": "coco - 副本\\20260604215815803樟.json",
+      "sha256": "30b7e2313af990da84cf2c08b7e930295e4a310e5b214b9666343c43195dae85",
+      "bytes": 1219
+    },
+    {
+      "path": "coco - 副本\\20260604215824995左下碧桃.json",
+      "sha256": "42fe129258e49b716eb7c4972db68308430ff9ba183c4e78a552edf80e8c4361",
+      "bytes": 1393
+    },
+    {
+      "path": "coco - 副本\\20260604215839814中间碧桃.json",
+      "sha256": "57d006bb5ce4c7f354ce8ad8bee49962d069df14198240c310becd36ee5dcf72",
+      "bytes": 1814
+    },
+    {
+      "path": "coco - 副本\\20260604220025828右红樟.json",
+      "sha256": "532f664567844e0acbd0baab61d2965f0ba3659516e75733492085bd1f0362b0",
+      "bytes": 1130
+    },
+    {
+      "path": "coco - 副本\\20260604220100677楝.json",
+      "sha256": "4192c0458ca268936a20d979d365dd30a56be59365cc3cc62be0eff3d6ed50c4",
+      "bytes": 1471
+    },
+    {
+      "path": "coco - 副本\\20260625222356931右下碧桃.json",
+      "sha256": "5b4b2257ab2f65128d106a348129676cd4e472198ea0e508ed3b80071ef2b4e1",
+      "bytes": 1391
+    },
+    {
+      "path": "coco - 副本\\20260625222406071右红圆樟.json",
+      "sha256": "34c29544ff19f8f0738803446e363c7def1bb9c0403746d5ae7829bfbabcfc83",
+      "bytes": 1147
+    },
+    {
+      "path": "coco - 副本\\20260625222439131红圆樟.json",
+      "sha256": "7eaf068cf385316aae293b7a341e79871dfcad8044b62fa2758a2ba5851d1ea3",
+      "bytes": 1128
+    },
+    {
+      "path": "coco - 副本\\20260625222542457中下鹅掌楸.json",
+      "sha256": "9bd306173735d674f7648486d0d0c69c37ade5856d894a67ca6c759d891307fc",
+      "bytes": 1402
+    },
+    {
+      "path": "coco - 副本\\20260625223003054右圆楝.json",
+      "sha256": "72d89d3a8e567c5266e82bccb7148edf3a6cf20a2f109db53405fee4bcbf4e93",
+      "bytes": 1523
+    },
+    {
+      "path": "coco - 副本\\20260625223029058中圆楝.json",
+      "sha256": "6f5877ac61c9b8e069f3484518b5b0c47bdb2658f3d7cfa6b66beb1bd59412f9",
+      "bytes": 1964
+    },
+    {
+      "path": "coco - 副本\\20260625223049920下圆楝.json",
+      "sha256": "f0ce01396c1bee9f437f4bd02ad98af1df0b8ebdb75dcc5af40fc57de3660b32",
+      "bytes": 2034
+    },
+    {
+      "path": "coco - 副本\\20260625223121236红圆樟.json",
+      "sha256": "16a7ccaaecaac0ddad5317b8e6927b5794c781e946db4342307237eac1f72bca",
+      "bytes": 1312
+    },
+    {
+      "path": "coco - 副本\\20260625223343927下圆樟.json",
+      "sha256": "37732179581721ebd646f03375e89a43f42e1c6b188f083c3e680a1efc7b6be8",
+      "bytes": 1464
+    },
+    {
+      "path": "coco - 副本\\20260625223350861上二马尾松.json",
+      "sha256": "c5d9dd2fbaf36b42a21d2a7ecda3a79bb0f45ea28cb4b505d982aae56ed6aaa6",
+      "bytes": 3553
+    },
+    {
+      "path": "coco - 副本\\20260625223750583楝.json",
+      "sha256": "2cb4933dc868657570adc4e47bbb1a62deeb9130ee5bf106cc227a34884df8e9",
+      "bytes": 1214
+    },
+    {
+      "path": "coco - 副本\\3.2-001大圆楝.json",
+      "sha256": "37fa917873fe95bbe4cb258867734c68d9e579a3d8d8511f70e10f9febb6451d",
+      "bytes": 17407
+    },
+    {
+      "path": "coco - 副本\\3.2-002大圆楝小圆樟.json",
+      "sha256": "e61e7dc9788e7724c413308eab4f98627bfced867bd8dc6451b6a89f3b65e41e",
+      "bytes": 17015
+    },
+    {
+      "path": "coco - 副本\\3.2-007大圆楝小圆樟.json",
+      "sha256": "d660f70fcd853516bfca3c281e1cf785f6e160d81cfe9b0f4d3eb9ffd8deb63c",
+      "bytes": 21390
+    },
+    {
+      "path": "coco - 副本\\3.2-008大圆楝小圆樟.json",
+      "sha256": "9657fa7f26bcf8884d10fdd9173e75f670ce7e005aa0bf5e11c7300ec9ce52b9",
+      "bytes": 16585
+    },
+    {
+      "path": "coco - 副本\\dataset.json",
+      "sha256": "308dec35b0214bf4100a8e83c734be5ba2f9e266f4a7164a35d6fd84821dbf1b",
+      "bytes": 1386742
+    },
+    {
+      "path": "coco - 副本\\dataset_zh.json",
+      "sha256": "23432986745ad347da86b446334e3e5d4d5e1e3b629816f6a22cfe96a110b9c0",
+      "bytes": 1384459
+    },
+    {
+      "path": "coco - 副本\\output.xlsx",
+      "sha256": "c37fa7858329f0c81d90a2c323e5389de500f1da31614cb6c508ed0b396d5527",
+      "bytes": 94328
+    },
+    {
+      "path": "coco - 副本\\output_旧版备份.xlsx",
+      "sha256": "e9375081b8d8814926f6edaf0b580cb2103103acbe8c5896eea3dd91267b5931",
+      "bytes": 63447
+    },
+    {
+      "path": "coco - 副本\\中间毛虫状：山合欢20260512103356115.json",
+      "sha256": "3dd464925fa2834cca74632afeb39548856b03d90db1cc32d992b7a27d0de46a",
+      "bytes": 2414
+    },
+    {
+      "path": "coco - 副本\\北站西二路（银杏左边香樟，右边三个蓝花楹.json",
+      "sha256": "25758228e349529191b53ace6f953beb7daaf0f67b313e17e04ab48742e62191",
+      "bytes": 6340
+    },
+    {
+      "path": "coco - 副本\\大圆为楝，小圆为樟20260512103659192.json",
+      "sha256": "c02e3542bab560bcb30d571c4e11f357cbca01579bc436b377c5e2da1e8539ed",
+      "bytes": 9435
+    },
+    {
+      "path": "coco - 副本\\大圆为：楝20260512103309620.json",
+      "sha256": "bc2fad17a0b44127c121edee67b70d9c7652e91fe4dc9a2d23562adbabd63ec6",
+      "bytes": 11090
+    },
+    {
+      "path": "coco - 副本\\大圆楝 小圆樟20260512104142606.json",
+      "sha256": "8939f33d67429315cf9f57faffb577a3c42b00c6e52ddf5f570100be6c3e1bfb",
+      "bytes": 7586
+    },
+    {
+      "path": "coco - 副本\\大圆楝，小圆樟20260512104135130.json",
+      "sha256": "6d8da9d48eea8eefa6859269c6fd277635f1cb468c69c900274a6b76df9898f7",
+      "bytes": 2659
+    },
+    {
+      "path": "coco - 副本\\大红圆为：楝，小圆为：樟20260512103715487.json",
+      "sha256": "ec68aaada4228a739ac461e9b1279870c8431e3bad787c86ba944cd3e46f40b6",
+      "bytes": 24720
+    },
+    {
+      "path": "coco - 副本\\大红圆为：楝，小红圆：樟20260512103840923.json",
+      "sha256": "2a0319e1591834cdba7146c77034d1aeb4f4143fea977c8857458f7525ac58ec",
+      "bytes": 13436
+    },
+    {
+      "path": "coco - 副本\\小圆樟大圆楝.json",
+      "sha256": "afb34ed71baf13b9db190451b9e52d72a02141575096678666ae021db955c0f6",
+      "bytes": 138146
+    },
+    {
+      "path": "coco - 副本\\左侧红圆为：樟20260512103419795.json",
+      "sha256": "e85823244b9be0f7a045c5f0831dfce1b0729be8d53c79484e8ba874e8561d6d",
+      "bytes": 2652
+    },
+    {
+      "path": "coco - 副本\\朴树群体.json",
+      "sha256": "b6c8781aa6d499866a5f0f9a934c1af1251991dd75de23ed4d4d094132bda724",
+      "bytes": 30846
+    },
+    {
+      "path": "coco - 副本\\樟20260512104054513.json",
+      "sha256": "b81bb9c2de06f02928b17ac3611fcfba62516eb4273ad3cae04f49ed1682b0d3",
+      "bytes": 2557
+    },
+    {
+      "path": "coco - 副本\\樟20260512104200489.json",
+      "sha256": "62f1b2aa10862de8ec0db7d2054b24e3c6a1918ce4f73c45b3bd628f37838b63",
+      "bytes": 9146
+    },
+    {
+      "path": "coco - 副本\\狮子山（樟.json",
+      "sha256": "994fbfc5315ff29f0dfd9f1123e40971b94ccff907b1e1293554ef7a303c478f",
+      "bytes": 13721
+    },
+    {
+      "path": "coco - 副本\\红圆：樟20260512103443674.json",
+      "sha256": "fc3128c922cf1ab1a9675bf658221b83bed8a27c55395fdb02052289b3bc40b5",
+      "bytes": 23770
+    },
+    {
+      "path": "coco - 副本\\红圆：樟20260512103455693.json",
+      "sha256": "6d930a0ca801f1b77513451ddb0251d007bc6c049b4227eaa9f3e177b27934a2",
+      "bytes": 17332
+    },
+    {
+      "path": "coco - 副本\\纺锤为 白玉兰，红圆为：樟20260512103257670.json",
+      "sha256": "4fde08bfcffbc0e31d31eb4c41875d568c8c536ac6593284ea72f58c0de94e12",
+      "bytes": 8226
+    },
+    {
+      "path": "coco - 副本\\驷马桥（树红圆为樟.json",
+      "sha256": "5dbac3f5c67d34ccb604422897a77f5ef47b009cf2d86db6db81d6ae409008aa",
+      "bytes": 5332
+    },
+    {
+      "path": "上为夹竹桃，右侧纺锤：白玉兰20260512102049614.jpg",
+      "sha256": "e22caeb6afd29cd1364124f27e28d84dffdacab3bc4bf764942cd1d98230fd41",
+      "bytes": 2472737
+    },
+    {
+      "path": "上纺锤为山玉兰，中间为楝，下面为樟20260509204846435.jpg",
+      "sha256": "4516095ee361d6b5e183ffccd63460c0ce2af8f4446f4d66cedf9ea183edb72b",
+      "bytes": 2521240
+    },
+    {
+      "path": "中下部：山玉兰20260509203431948.jpg",
+      "sha256": "1de4aa21c1bc74b01244c916962dc89a035c6a0efce000d6f7fdf256c75680d4",
+      "bytes": 2613241
+    },
+    {
+      "path": "中部的红色圆球为樟， 斜上方的胖纺锤为山玉兰20260509204039659.jpg",
+      "sha256": "794438d135352de943afd03e71f32711ed34cfd8417265f6a372017fb1a7ca6f",
+      "bytes": 2550099
+    },
+    {
+      "path": "中间三个：洋紫荆，上面圆形：楠20260617162422269.jpg",
+      "sha256": "260daaf6dac4022171ac0b69984309d685250a2e0a11c8d80cf01c77137e4a70",
+      "bytes": 2621337
+    },
+    {
+      "path": "中间毛虫状：山合欢20260512103356115.jpg",
+      "sha256": "fa26570613a7e73a863c092d3093d87feead87e6a932087d074087c99271a713",
+      "bytes": 2432135
+    },
+    {
+      "path": "从大到小黑松 香樟 构树20260524102918813.jpg",
+      "sha256": "d7eae5bfa91798ce654b57a45904fbbc02a7c053ec5acc3e0f6dcb38015865a3",
+      "bytes": 2551667
+    },
+    {
+      "path": "全为樟20260509211146250.jpg",
+      "sha256": "ecc7c8ba9d74703e164a52e920bc3072eff60d3325d4d8df26a4bc52682e1be3",
+      "bytes": 2518715
+    },
+    {
+      "path": "全是楝20260509205629777.jpg",
+      "sha256": "e0a78a4a6f826bf594c93698671a31b589b4b9a5880196efc2ad57cdf4f34b59",
+      "bytes": 2508959
+    },
+    {
+      "path": "全是樟20260420224012771.jpg",
+      "sha256": "d038d4c1fcd03e0870a9861354d02c0c50ec768cd0e03277e58b957d5cc5fe0a",
+      "bytes": 2488165
+    },
+    {
+      "path": "又圆为樟20260420225712983.jpg",
+      "sha256": "4e0bd5614d71e5ae4e22a04280f215623525683e6f4e54dcea0cf601d13c6409",
+      "bytes": 2551620
+    },
+    {
+      "path": "右上：白玉兰20260429145827150.jpg",
+      "sha256": "bdaed9579fe89a469e2200b120ccc4d4d583d7d3fe4978a39ef5e47b39fecf79",
+      "bytes": 2570727
+    },
+    {
+      "path": "圆形为楝，胖纺锤为山玉兰20260509204211326.jpg",
+      "sha256": "19b0dc00166abbfb6c68d1b5d4963bde9adbda561308b3a7048584d7f26c6297",
+      "bytes": 2537239
+    },
+    {
+      "path": "圆形的是樟 纺锤的是银杏 小圆形是构树20260511112126093.jpg",
+      "sha256": "5c193b3ffb1f73391f2d9f6130a3efc35eddd7ac194263c36bbe7561e0c1f742",
+      "bytes": 2711501
+    },
+    {
+      "path": "圆形的是樟 纺锤的是银杏20260511111915561.jpg",
+      "sha256": "dc9d0b47cf967bd66e627d215b41ae10935bd6c97d0cf7fd5b9d401ce771510d",
+      "bytes": 2870868
+    },
+    {
+      "path": "圆形的是樟 纺锤的是银杏20260511112016000.jpg",
+      "sha256": "9ba5bd0b586152d831bdcc9eb93f47a92ef4b4541b6a62240484cb3168ed3819",
+      "bytes": 2847481
+    },
+    {
+      "path": "圆形的是樟 纺锤的是银杏20260511112041849.jpg",
+      "sha256": "003c9d3724e33da7cf4f37171e79d6eb4704bd1f823b8d4f5cf7da52654754b0",
+      "bytes": 2757189
+    },
+    {
+      "path": "大为樟小的为构20260511112427466.jpg",
+      "sha256": "acba98acb6348b944a67373e146293095612d84e8e35bba98678c3cc5f00683a",
+      "bytes": 2365894
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260420222647534.jpg",
+      "sha256": "6bec480202544b9553f729af2ccf176cb9054118b7bfebf320b9eaa44f27d47b",
+      "bytes": 2551884
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260420222839263.jpg",
+      "sha256": "d7e6e5ad8a46eae7bffe3be1a1e08724f66852f04ac90f8d5c5426b42a0587b2",
+      "bytes": 2548121
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260420224718670.jpg",
+      "sha256": "26868e0babb65d0826d1b01494719f00fc7634456c25283638ea7cb007c01d7e",
+      "bytes": 2372763
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260420225214531.jpg",
+      "sha256": "8729a3c863be391f770797f8343d85bb26a8d2082a69cc072368dce6376ebe91",
+      "bytes": 2327997
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509203929757.jpg",
+      "sha256": "3a254a57d8e92f5b4f11b35a820873a2bb694f822b040198ca6a2fc1913f937f",
+      "bytes": 2655378
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509204143127.jpg",
+      "sha256": "7605a164d9c7f4d762d3c57fac5e8026a410efecf377e1374d6979b137b4bd30",
+      "bytes": 2637102
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509204404910.jpg",
+      "sha256": "13666a4af9507b5b90586c1b505ed80f999f9cc7942c4832687af635ecbead65",
+      "bytes": 2647386
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509204447962.jpg",
+      "sha256": "f32dc9608c7d13715440be25569d2a1e40d765884881c53556b9387b30fe0b7c",
+      "bytes": 2376925
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509205319515.jpg",
+      "sha256": "4650002b102f553c630bb4b96e370726365bca5b7623fc50737364a6f8be3a8e",
+      "bytes": 2672165
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509205536000.jpg",
+      "sha256": "054d9e3ce829e742d616f011d1a77682c6dd7857e51dd653e072ad9f7402325e",
+      "bytes": 2817513
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509211159518.jpg",
+      "sha256": "4afbbeed2588faf3e222dcbd54c9c0fc9b3b4b3f815c51b908d6f53d5cef2969",
+      "bytes": 2592058
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509211416504.jpg",
+      "sha256": "fee4bd5960768676d79e482f3fbba80d29902cd769c730b6f7faf67406767e1a",
+      "bytes": 2643675
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260509211432573.jpg",
+      "sha256": "717796e0f48e2edbcf33f0cb4f441ee50f46f5ceeac007d252105f4e827bfb8d",
+      "bytes": 2852974
+    },
+    {
+      "path": "大圆为楝，小圆为樟20260512103659192.jpg",
+      "sha256": "fed8b9ea8c79d095ff8e76f5a878779477728dece9c483b79aa120c80c23691d",
+      "bytes": 2553668
+    },
+    {
+      "path": "大圆为楝，小圆为樟，右侧两个纺锤体为：白玉兰20260509211359242.jpg",
+      "sha256": "63274378760d19122736125e9f0ad2a565e0898ae6905dd73ef8b9a84aacb519",
+      "bytes": 2813546
+    },
+    {
+      "path": "大圆为：楝20260512103309620.jpg",
+      "sha256": "021be79a6d87eaff85450069ebfe0962d241dc79668a85406f7f96e501ddf8f5",
+      "bytes": 2573421
+    },
+    {
+      "path": "大圆为：楝；小圆为：樟20260512102746456.jpg",
+      "sha256": "7f0826d71f87c98bb1e78bcf8b4a45df651d1f422343a48bbc729b9494012b03",
+      "bytes": 2476661
+    },
+    {
+      "path": "大圆形的是樟 小圆形是构树20260511112210483.jpg",
+      "sha256": "e72da01459051f4683b606a2f4f85814fd9d7fa11680f7ac8b039b20cdb87482",
+      "bytes": 2578704
+    },
+    {
+      "path": "大圆楝 小圆樟20260512104142606.jpg",
+      "sha256": "6040ee63aaad5ddb4af59c11dc96c75cff00ce2a42f967aa059269741876400f",
+      "bytes": 2302494
+    },
+    {
+      "path": "大圆楝，小圆是樟20260429145910481.jpg",
+      "sha256": "340f7c52435cf413ae980bf065114def547eb8e95606209594eb7fc8a493cf23",
+      "bytes": 2488429
+    },
+    {
+      "path": "大圆楝，小圆构20260509205230195.jpg",
+      "sha256": "6730c7a7c9b30e15305bb2dce271cac02202fdc11431f11bbee888826e988f20",
+      "bytes": 2618906
+    },
+    {
+      "path": "大圆楝，小圆樟20260429150452725.jpg",
+      "sha256": "dd400fc8568ba051442d353217ac78d4b9d55979c149cb7288be4df47e1c26fe",
+      "bytes": 2578003
+    },
+    {
+      "path": "大圆楝，小圆樟20260429150540405.jpg",
+      "sha256": "9c8f2b0b2a0833d4c27b941cfc5d8edf1006b7638ba446bc824fd212c34bdfee",
+      "bytes": 2507413
+    },
+    {
+      "path": "大圆楝，小圆樟20260509204226207.jpg",
+      "sha256": "1753ea4dc5d5a47f0e5dd43680cfc0c522add6dcdcfca8dfb159efc7f5248e75",
+      "bytes": 2640310
+    },
+    {
+      "path": "大圆楝，小圆樟20260512104135130.jpg",
+      "sha256": "638771c2b05f588458b6c79d2e31a91572e790925d32644c937a45f1d333d060",
+      "bytes": 2296719
+    },
+    {
+      "path": "大圆楝，小圆樟20260526131643779.jpg",
+      "sha256": "04f016971f3f7f1f48f2517a1ad60d7f820ce767da012628e681477b5e441978",
+      "bytes": 2465688
+    },
+    {
+      "path": "大圆樟，小圆构20260509205240656.jpg",
+      "sha256": "a22775b12bb08a80a0d17f231c3981dfea4acd6d46a2239cffc95b91ecfe2fc7",
+      "bytes": 2535789
+    },
+    {
+      "path": "大樟小构20260524100657172.jpg",
+      "sha256": "4d306658dafee9e53ebe233cc6a29b217272f35a9029b76ccc9aec83f77be469",
+      "bytes": 2476626
+    },
+    {
+      "path": "大樟小构20260524101303331.jpg",
+      "sha256": "60a23dfb51ef0451e5f2b82d3e30fcbe9eaf6ec4038fd3637e09515532349911",
+      "bytes": 2438408
+    },
+    {
+      "path": "大的圆为楝，小圆为樟20260509203837906.jpg",
+      "sha256": "470581cec8f8f3e9e422e8a3ab911f7ab8d18d7bda140c31854a368baa8d55ab",
+      "bytes": 2848053
+    },
+    {
+      "path": "大红圆为：楝，小圆为：樟20260512103715487.jpg",
+      "sha256": "b432c8765cadbf2582584167d6b5e563503a812a49fe6adcafd3a603b0368922",
+      "bytes": 2761685
+    },
+    {
+      "path": "大红圆为：楝，小红圆：樟20260512103840923.jpg",
+      "sha256": "ed8e1ad1af03907931ef7c2daaa74ccbec11ab05400aa6002ee7d23b210ff267",
+      "bytes": 2686040
+    },
+    {
+      "path": "小圆构大圆樟20260511112526768.jpg",
+      "sha256": "88c50958d7e5cd84260b8e49f7b63daa7487a4226c6e425bfdda61b67d0d1823",
+      "bytes": 2617523
+    },
+    {
+      "path": "左上构树20260605194348126.jpg",
+      "sha256": "60475273ac03546e0d3790cabb2172c265e581dad1859e2b9b959871729cab03",
+      "bytes": 2543510
+    },
+    {
+      "path": "左上香樟 左下细叶合欢，右圆形为构树20260524102820367.jpg",
+      "sha256": "d8fd04e6ddfadfa862aeab50a659086011bf0e1de391588c20ba86dfc8512bc5",
+      "bytes": 2621529
+    },
+    {
+      "path": "左上：山合欢，中圆：构树20260531184446418.jpg",
+      "sha256": "60669c255ba0864a426c3856d433adb760c58c4124ea2f76903739ba00b374c7",
+      "bytes": 2586067
+    },
+    {
+      "path": "左侧红圆为：樟20260512103419795.jpg",
+      "sha256": "2e9b0322962b5520803e9b0cf5dda52fc49321252fec35a71776ed748b5219a5",
+      "bytes": 2598847
+    },
+    {
+      "path": "左构树 右边山合欢20260531184831098.jpg",
+      "sha256": "ce62c8b5d36ce714dfa01044b8b9b56df188fc4e1de2288accda49c293e7b64a",
+      "bytes": 2729381
+    },
+    {
+      "path": "左边黑松右边构树20260605193545527.jpg",
+      "sha256": "5f225d25bc4aaf8df114915cee1a14d731c18bfecac3fa7a3986f3e0a482bb53",
+      "bytes": 2433609
+    },
+    {
+      "path": "广玉兰20260526131707177.jpg",
+      "sha256": "1b80985fd06b8864f01582aaeb8998d3b86c01a3d1f03af7c5e6f8c023b5d876",
+      "bytes": 2468618
+    },
+    {
+      "path": "构树20260605193407124.jpg",
+      "sha256": "de1af21000bca1055f5a6cfffed3009e55c51cdd33c275a9ade06a908eb0ca9a",
+      "bytes": 2494659
+    },
+    {
+      "path": "构树20260627162709388.jpg",
+      "sha256": "f77798e7385d3521537763b85f81aecc041f4f324797b87c4fac718d4d53c182",
+      "bytes": 2483917
+    },
+    {
+      "path": "构树20260627162727524.jpg",
+      "sha256": "54f15233442a2919779010c5187338a170a3b34f0e52ace49008f9747fbc480c",
+      "bytes": 2389776
+    },
+    {
+      "path": "楝20260420223340154.jpg",
+      "sha256": "7d33c1b1066da888ff7c395d3ab85d43f4c25c0d074a68ad71fdc4253eb1fbe0",
+      "bytes": 2431925
+    },
+    {
+      "path": "楝20260429145222477.jpg",
+      "sha256": "00062eb55ffe744f7552be74f71663e40f985cd29f505a4684f0dee58155570b",
+      "bytes": 2507406
+    },
+    {
+      "path": "楝20260429145333277.jpg",
+      "sha256": "fb1113022b9d58837086978bb3b6d8bae391839db9f89eb9596678ba6204393f",
+      "bytes": 2547430
+    },
+    {
+      "path": "楝20260429145821789.jpg",
+      "sha256": "3f55c8aef93cbffa70402f9d9a130c840f50f44c1219ac4f85603dc76d451d66",
+      "bytes": 2614364
+    },
+    {
+      "path": "楝20260505133505880.jpg",
+      "sha256": "fdc13002b775cf26a41d94b9d0ee79fca2fb59a6678d15ac5be03854051d9fa4",
+      "bytes": 2670447
+    },
+    {
+      "path": "楝20260509203117703.jpg",
+      "sha256": "4172703a6072b03089f7fe6a5207fb5354f1a2f5949da3ec5aaf1e776b0700df",
+      "bytes": 2543609
+    },
+    {
+      "path": "楝20260509205605522.jpg",
+      "sha256": "15bf82b3212c0ca185f1001163a91a9f98092b0ca0c2df0d49e6b17c343fa6de",
+      "bytes": 2389276
+    },
+    {
+      "path": "樟20260420222630273.jpg",
+      "sha256": "a4be00c3e42eedb3f69207f81f08e7481e98b5c0fe4a40c921f671a6e26e9572",
+      "bytes": 2456220
+    },
+    {
+      "path": "樟20260420224734462.jpg",
+      "sha256": "2569a2d5ba00c44101aa6fbd03b61fab43b0676dd68c939c5d4fdb5d64d5ccee",
+      "bytes": 2506405
+    },
+    {
+      "path": "樟20260420224832825.jpg",
+      "sha256": "4f92dfe83c1c85fc295d046c2fe1911135135653ab355d8c4bd7e108eac5dfa1",
+      "bytes": 2337491
+    },
+    {
+      "path": "樟20260420224938489.jpg",
+      "sha256": "4bfed5902ee48498ef5820a22cb9e91522044cb5db2332a756ba86dd2faebf68",
+      "bytes": 2496576
+    },
+    {
+      "path": "樟20260420225042725.jpg",
+      "sha256": "32cfcce24f1e596accbf8143f4a81b513faa51336cd313c298b248a559232738",
+      "bytes": 2302701
+    },
+    {
+      "path": "樟20260420225332277.jpg",
+      "sha256": "b2b308deb538130337bfd3b8954cfd2e2e8b75e3b9b30fddd0da8f683cb22051",
+      "bytes": 2350816
+    },
+    {
+      "path": "樟20260420225417970.jpg",
+      "sha256": "4e688cecd70ae909a60316eee4070503f2bc3d6eba968edb3a0480ba6b8ed914",
+      "bytes": 2354881
+    },
+    {
+      "path": "樟20260429145211312.jpg",
+      "sha256": "7b5106c2730f45ebd3e841c61c146cea47aee77e8c763c22d1834bfc204d45b4",
+      "bytes": 2498773
+    },
+    {
+      "path": "樟20260429150103017.jpg",
+      "sha256": "7924f4f6bded09fdbe7a41236ef0c5fc6f342ee90b8e30766ac480de9b12117a",
+      "bytes": 2626804
+    },
+    {
+      "path": "樟20260429150300020.jpg",
+      "sha256": "2e0e1cc79df5b1596452ff798a551f54a5925684e7b14b3c4dbf8ae99658dc67",
+      "bytes": 2508910
+    },
+    {
+      "path": "樟20260505133446638.jpg",
+      "sha256": "d88ddd04bbb45bed8266676c1755debae28dc54d58aa1dfeabdec15d513878b3",
+      "bytes": 2605826
+    },
+    {
+      "path": "樟20260505134412138.jpg",
+      "sha256": "93cfa5db169baae06c314e99c9a0cc3b5f6834e0faf6ac8c04ed8e4222d7c44f",
+      "bytes": 2722969
+    },
+    {
+      "path": "樟20260509205253352.jpg",
+      "sha256": "a601b225f930202ccb8ff1a490b51f28db21407b4691afd19f940199b9665deb",
+      "bytes": 2529798
+    },
+    {
+      "path": "樟20260512104054513.jpg",
+      "sha256": "079353e24c61638554bd0a49e699b21fafc9eb0b179005444f35a3677b36c2a3",
+      "bytes": 2309009
+    },
+    {
+      "path": "樟20260512104200489.jpg",
+      "sha256": "1fe5f91af5d075c4b1cbac0d15a40b78568a9edfd72afed653d566f189e5c2af",
+      "bytes": 2356826
+    },
+    {
+      "path": "淡黄色长方形的为：土紫荆20260605192828688.jpg",
+      "sha256": "28d183bc0778a63b7792c76395d39a2f047867411529b4ecede635eb09574545",
+      "bytes": 2325119
+    },
+    {
+      "path": "红圆：樟20260512103443674.jpg",
+      "sha256": "2b4c28fb53f3a65eb626e373ab63f787d8b37df189d7922e509fb4ae6f4e5f86",
+      "bytes": 2635098
+    },
+    {
+      "path": "红圆：樟20260512103455693.jpg",
+      "sha256": "c6403f36e0611935a96c3dff29de032f5a6fe57d6c4b165d999a223c1c1dd2df",
+      "bytes": 2553632
+    },
+    {
+      "path": "红色的是构树20260605193422625.jpg",
+      "sha256": "f37eaa61c8af471759fd4522e4ae125b2eefd5bb2853b4173d91fab6f4a84f7e",
+      "bytes": 2335123
+    },
+    {
+      "path": "纺锤为 白玉兰，红圆为：樟20260512103257670.jpg",
+      "sha256": "bdfd6bcb55b9469114f64371d99f8fd371522b96c312a0fdffe6a50a656af1b4",
+      "bytes": 2484335
+    },
+    {
+      "path": "纺锤形：白玉兰，圆的为樟20260505134333725.jpg",
+      "sha256": "b8036f86141894379eef0c78fbf9c308bf6ce50fa4250dacb7918e5b2a5be936",
+      "bytes": 2729151
+    },
+    {
+      "path": "纺锤：白玉兰，球形为：樟20260512102332412.jpg",
+      "sha256": "cc234fa258c826c361d0a5d3c52dbd04b07a5fab3beaf5c83c2520c9f248150b",
+      "bytes": 2465229
+    },
+    {
+      "path": "蓝花楹20260606155449731.jpg",
+      "sha256": "6b5e622463cc9962f5c540d6d3967ccfd779fd0888a43a512b71883d25ebbef9",
+      "bytes": 2534881
+    },
+    {
+      "path": "蓝花楹20260606155523550.jpg",
+      "sha256": "3f642dccced03e7620b471e8a1988ca02833ebc3dd16bcc62614f6e473bef487",
+      "bytes": 2437910
+    },
+    {
+      "path": "蓝花楹20260606155828920.jpg",
+      "sha256": "dc1b54b67e4929c9b8c671a33482ea9cbff4206b95e224176749ba56623a4b5f",
+      "bytes": 2725384
+    },
+    {
+      "path": "蓝花楹20260617162029961.jpg",
+      "sha256": "5cae8a1633864b2ff8025e98d158add4ebd2bc9e36277c0d2f7d14a6247d4c7c",
+      "bytes": 2737129
+    },
+    {
+      "path": "长方形：蓝花楹，大圆为：楝20260606154548768.jpg",
+      "sha256": "3e92430399aa853c3d1db487725ac2980721cc2aaa1df2d265beffdd5f59103c",
+      "bytes": 2535349
+    },
+    {
+      "path": "长方形：蓝花楹，大圆：苦楝20260606154815913.jpg",
+      "sha256": "3333bba5fba9d6079a8819585b4eb8450c48f605df923566c021ada83ea8f862",
+      "bytes": 2360898
+    },
+    {
+      "path": "顶部黑松，小圆为樟20260420222601153.jpg",
+      "sha256": "b40146faad5da26464a543da366116eb070e814384d6872ab94bd63fdc81f4ec",
+      "bytes": 2730719
+    },
+    {
+      "path": "黑松 20260601151053594.jpg",
+      "sha256": "dc1e8e94c962386fbd3ef14b898fe9e85f84366c9714940ab8665df83dbdf177",
+      "bytes": 2374070
+    },
+    {
+      "path": "黑松.jpg",
+      "sha256": "6b1642c0cee60d9e1e8641b8a82f6420c4dc886a9fc763c7bc8bbd1a0dddf5db",
+      "bytes": 2368718
+    },
+    {
+      "path": "黑松20260509205309188.jpg",
+      "sha256": "4c90b9dc8ed77b038fb0efbf74328e598aed5af2ac642ffca66e2359b45c2268",
+      "bytes": 2377838
+    },
+    {
+      "path": "黑松20260522111140787.jpg",
+      "sha256": "9a984fb86e63adde2d9a7c615c9673172e7852ef39f4995c5ef75d6b95b171ca",
+      "bytes": 2337790
+    },
+    {
+      "path": "黑松20260522111225426.jpg",
+      "sha256": "bd025ca384904a9b3fa190f788c6529cb6cb691e1d4d03ce57ac1bf04fd14e9d",
+      "bytes": 2317346
+    },
+    {
+      "path": "黑松20260524102734066.jpg",
+      "sha256": "012766985583476346f1dd362b0602c3323390b0d0334958ce05ec407a152ddd",
+      "bytes": 2427006
+    },
+    {
+      "path": "黑松20260531195429016.jpg",
+      "sha256": "63a8f6abbfd7add345622ff93ddd149e3e3c3b9dc675db2a50c125339811b9e8",
+      "bytes": 2348822
+    },
+    {
+      "path": "黑松20260531195451602.jpg",
+      "sha256": "614058d798648a818b6c925c5cb96e0767af8bd005d336e339f4cbf8d178051d",
+      "bytes": 2282170
+    },
+    {
+      "path": "黑松20260601150604030.jpg",
+      "sha256": "3202f35700a038ee0ee0ef43df5d1f6be0cc121303c714c7e5e8b8ab21e22a22",
+      "bytes": 2355866
+    }
+  ],
+  "split": {
+    "source_json": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\数据\\coco - 副本\\dataset.json",
+    "output_root": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\processed\\rfdetr_pollen_v2",
+    "seed": 42,
+    "train_ratio": 0.7,
+    "train_images": 76,
+    "valid_images": 31,
+    "train_annotations": 599,
+    "valid_annotations": 188,
+    "categories": 15,
+    "train_category_distribution": {
+      "1": 67,
+      "2": 10,
+      "3": 1,
+      "4": 77,
+      "5": 349,
+      "6": 3,
+      "7": 2,
+      "8": 2,
+      "9": 6,
+      "10": 35,
+      "11": 35,
+      "12": 5,
+      "13": 1,
+      "14": 2,
+      "15": 4
+    },
+    "valid_category_distribution": {
+      "1": 0,
+      "2": 3,
+      "3": 4,
+      "4": 12,
+      "5": 131,
+      "6": 0,
+      "7": 0,
+      "8": 1,
+      "9": 8,
+      "10": 9,
+      "11": 5,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 15
+    },
+    "valid_categories_present": [
+      2,
+      3,
+      4,
+      5,
+      8,
+      9,
+      10,
+      11,
+      15
+    ],
+    "raw_validation": {
+      "status": "passed",
+      "source": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\数据\\coco - 副本\\dataset.json",
+      "image_root": "C:\\Users\\唐\\Desktop\\pollen_project\\data\\数据",
+      "images": 107,
+      "annotations": 787,
+      "categories": 15,
+      "category_distribution": {
+        "0": {
+          "name": "夹竹桃",
+          "annotations": 67
+        },
+        "1": {
+          "name": "白玉兰",
+          "annotations": 13
+        },
+        "10": {
+          "name": "银杏",
+          "annotations": 40
+        },
+        "11": {
+          "name": "细叶合欢",
+          "annotations": 5
+        },
+        "12": {
+          "name": "广玉兰",
+          "annotations": 1
+        },
+        "13": {
+          "name": "土紫荆",
+          "annotations": 2
+        },
+        "14": {
+          "name": "蓝花楹",
+          "annotations": 19
+        },
+        "2": {
+          "name": "山玉兰",
+          "annotations": 5
+        },
+        "3": {
+          "name": "楝",
+          "annotations": 89
+        },
+        "4": {
+          "name": "樟",
+          "annotations": 480
+        },
+        "5": {
+          "name": "洋紫荆",
+          "annotations": 3
+        },
+        "6": {
+          "name": "楠",
+          "annotations": 2
+        },
+        "7": {
+          "name": "山合欢",
+          "annotations": 3
+        },
+        "8": {
+          "name": "黑松",
+          "annotations": 14
+        },
+        "9": {
+          "name": "构",
+          "annotations": 44
+        }
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
+}
