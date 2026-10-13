@@ -1,0 +1,25 @@
+model:
+  name: RFDETRSegMedium
+  num_classes: 12
+  pretrain_weights: ../Pretrain_para/rf-detr-seg-m-ft.pth
+
+paths:
+  dataset_dir: ../Proceeded_data/COCO_Dataset_Raw2_Raw3
+  output_dir: ../Train_output/{order_number}{model_name}output
+  resume: ../Train_output/01/last.ckpt
+
+run:
+  order_number: "01"
+
+train:
+  epochs: 70
+  batch_size: 2
+  grad_accum_steps: 4
+  lr: 0.0001
+  num_workers: 0
+  tensorboard: false
+  eval_interval: 1
+  eval_max_dets: 500
+  log_per_class_metrics: true
+  best_model_metric: map
+  run_test: false

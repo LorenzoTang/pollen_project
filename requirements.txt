@@ -10,6 +10,7 @@ pandas
 numpy
 pillow
 tqdm
+pyyaml
 
 # Object Detection Dataset
 pycocotools
